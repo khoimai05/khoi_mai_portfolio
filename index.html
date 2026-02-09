@@ -1,29 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<meta charset="utf-8">
-
-    <!-- 
-      TODO
-
-      Upload your Unemployable (or whatever photo you like) to the assets/images folder
-      and change the name of the image below to match the uploaded one
-
-      Change the title in the <title> tag to whatever you would like the title of your portfolio to be
-
-      This should be the same across all pages.
-     -->
-    <link rel="icon" href="./assets/images/new_potrait.jpg" />
-		<title>Khoi Mai's Portfolio</title>
-    <meta name="description" content="A portfolio.">
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-		<link rel="stylesheet" href="./css/layout.css">
-    <link rel="stylesheet" href="./css/typography.css">
-    <link rel="stylesheet" href="./css/utilities.css">
-
-		<script defer src="./js/script.js"></script>
-	</head>
+  <meta charset="utf-8">
+  <link rel="icon" href="./assets/images/new_potrait.jpg" />
+  <title>Khoi Mai's Portfolio</title>
+  <meta name="description" content="A portfolio.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./css/layout.css">
+  <link rel="stylesheet" href="./css/typography.css">
+  <link rel="stylesheet" href="./css/utilities.css">
+  
+  <script defer src="./js/script.js"></script>
+</head>
 	<body>
     <!-- NAVBAR -->
     <div class="navbar">
@@ -66,8 +60,7 @@
         <div id="portfolio-header-text-container">
             <div class="header-text">
               <span class="main-title">Hey, I'm Khoi!</span>
-              <div class="body-text">I’m a Junior at Purdue studying Computer Science and Data Science.</div>
-            </div>
+                <div class="body-text">I'm a Junior at <span class="purdue-gold">Purdue</span> studying Computer Science and Data Science.</div>            </div>
             <a class="button" id="my-work-link">
               <span class="button-text">Check out my experience</span> 
               <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
@@ -168,7 +161,9 @@
       
         This should be the same across all pages.
       -->
-      
+      <a class="icon-link" target="_blank" href="https://www.linkedin.com/in/khoi-maix/">
+        <image src="./assets/icons/li.svg" class="footer-icon"/>
+      </a>
       <!-- 
         TODO - Change the email after "mailto" to your contact email 
       
