@@ -1,4 +1,33 @@
 
+
+/* Dark Mode Styles */
+body {
+  background-color: #141414;
+  color: #ffffff;
+}
+
+.navbar {
+  background-color: #1a1a1a;
+}
+
+.nav-title-link {
+  color: #ffffff;
+}
+
+a.button {
+  border-color: #ffffff;
+  color: #ffffff;
+}
+
+a.no-underline {
+  color: #ffffff;
+}
+
+.project-card {
+  background-color: #1a1a1a;
+  border-radius: 8px;
+  padding: 16px;
+}
 /* Icons */
 
 .right-arrow-icon {
