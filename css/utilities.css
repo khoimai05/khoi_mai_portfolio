@@ -66,6 +66,8 @@ a.button {
   display: flex;
   gap: 5px;
   align-items: center;
+  transition: transform 0.2s ease;
+  position: relative;
 }
 
 a.button:hover {
@@ -204,6 +206,8 @@ a.icon-link {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
 }
 
 .project-card.visible {
@@ -247,4 +251,28 @@ a.icon-link {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
+}
+
+/* Scroll Reveal for Sections */
+#about-section {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#about-section.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Progress Bar */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #CFB991, #d4c19c);
+  z-index: 9999;
+  width: 0%;
+  transition: width 0.1s ease;
 }
