@@ -21,7 +21,7 @@ body {
 /* Main Page Layout */
 
 #main-content {
-  margin: 225px 250px;
+  margin: 225px 425px;
   display: flex;
   flex-direction: column;
   gap: 96px;
@@ -98,12 +98,13 @@ body {
       display: flex;
       flex-direction: column;
       gap: 34px;
-      background-color: rgba(42, 42, 42, 0.4);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 8px;
+      background: rgba(42, 42, 42, 0.15);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 12px;
       padding: 16px;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     }
 
     .project-card-text-container {
@@ -187,14 +188,14 @@ body {
 /* Extra Extra large devices (large laptops and desktops, 1200px and below) */
 @media only screen and (max-width: 1600px) {
   #main-content {
-    margin: 225px 165px;
+    margin: 225px 275px;
   }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and below) */
 @media only screen and (max-width: 1200px) {
   #main-content {
-    margin: 225px 150px;
+    margin: 225px 175px;
   }
 }
 
