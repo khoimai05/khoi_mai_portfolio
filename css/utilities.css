@@ -241,3 +241,10 @@ a.icon-link {
 .project-card:nth-child(6) {
   transition-delay: 0.6s;
 }
+
+/* Button Container */
+.button-container {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
