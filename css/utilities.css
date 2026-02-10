@@ -107,8 +107,21 @@ a.no-underline:hover {
 
 /* Dark Mode Styles */
 body {
-  background-color: #1e1e1e;
+  background: linear-gradient(-45deg, #151515, #2d2d2d, #1a1a1a, #2a251f);
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite, fadeIn 0.8s ease-in;
   color: #ffffff;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 .navbar {
@@ -178,12 +191,18 @@ a.icon-link {
 .project-card {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition: opacity 0.6s ease, transform 0.6s ease, box-shadow 0.3s ease;
 }
 
 .project-card.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(207, 185, 145, 0.3);
+  border-color: rgba(207, 185, 145, 0.5);
 }
 
 /* Add stagger delay for each card */
@@ -209,4 +228,9 @@ a.icon-link {
 
 .project-card:nth-child(6) {
   transition-delay: 0.6s;
+}
+.button-container {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }

@@ -98,6 +98,12 @@ body {
       display: flex;
       flex-direction: column;
       gap: 34px;
+      background-color: rgba(42, 42, 42, 0.4);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      padding: 16px;
     }
 
     .project-card-text-container {
@@ -111,6 +117,12 @@ body {
       height: 200px;
       object-fit: cover;
       object-position: center;
+      transition: transform 0.3s ease;
+      overflow: hidden;
+    }
+
+    .project-card:hover .project-image {
+      transform: scale(1.05);
     }
 
 
@@ -218,6 +230,3 @@ body {
     max-width: 100%;
   }
 }
-
-
-
