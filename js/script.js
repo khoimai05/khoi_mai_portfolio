@@ -15,19 +15,14 @@ if (typedTextElement) {
       typedTextElement.textContent += textToType.charAt(charIndex);
       charIndex++;
       setTimeout(typeText, 100); // Adjust speed here (lower = faster)
-    } else {
-      // Remove cursor after typing is complete
-      setTimeout(() => {
-        typedTextElement.style.borderRight = 'none';
-      }, 500);
     }
+    // Removed the code that was removing the cursor
   }
   
   typeText();
 }
-
-// Scroll animation for project cards (with disappear on scroll up)
-const projectCards = document.querySelectorAll('.project-card');
+// Scroll animation for project cards (all appear together)
+const projectsContainer = document.querySelector('.projects-container');
 
 const observerOptions = {
   threshold: 0.1,
@@ -37,13 +32,17 @@ const observerOptions = {
 const observer = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
+      // Add visible class to all project cards at once
+      const cards = entry.target.querySelectorAll('.project-card');
+      cards.forEach(card => card.classList.add('visible'));
     } else {
-      entry.target.classList.remove('visible');
+      // Remove visible class from all project cards
+      const cards = entry.target.querySelectorAll('.project-card');
+      cards.forEach(card => card.classList.remove('visible'));
     }
   });
 }, observerOptions);
 
-projectCards.forEach(card => {
-  observer.observe(card);
-});
+if (projectsContainer) {
+  observer.observe(projectsContainer);
+}
