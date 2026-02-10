@@ -22,14 +22,13 @@
     <!-- NAVBAR -->
     <div class="navbar">
       <a class="nav-title-link" href="./index.html">
-        <!-- TODO - Change the "Portfolio Title" to whatever you want displayed in the top left -->
         <span class="nav-title">Khoi Mai</span>
-         <!-- TODO - Change the email after 'mailto:' to your email address for contact -->
-        <a class="button" href="mailto:maixuankhoi05@gmail.com">
-          <span class="button-text">Contact Me</span>
-        </a>
+      </a>
+      <a class="button" href="./assets/images/Khoi Mai Resume.pdf" target="_blank">
+        <span class="button-text">Resume</span>
       </a>
     </div>
+    
 
     <!-- MAIN PAGE CONTENT -->
     <div id="main-content">
@@ -61,7 +60,8 @@
             <div class="header-text">
               <!-- <span class="main-title">Hey, I'm Khoi!</span> -->
                <span class="main-title" id="typed-text"></span>
-                <div class="body-text"><span class="purdue-gold">Purdue CS and DS</span></div>           
+                <div class="body-text"><span class="purdue-gold">purdue cs and ds (boiler up!)</span></div>    
+                <div class="body-text">incoming ds intern summer '26</div>           
              </div>
             <a class="button" id="my-work-link">
               <span class="button-text">My experience</span> 
@@ -78,9 +78,9 @@
         - Add paragraphs using the <div class="body-text"></div> elements in the "about-section-content"
       -->
       <div id="about-section">
-        <span class="subheader-text">My Background</span>
+        <span class="subheader-text">Background</span>
         <div class="about-section-content">
-          <div class="body-text">I'm a Junior at <span class="purdue-gold">Purdue</span> studying Computer Science and Data Science. My experience spans the full data lifecycle-from ETL processes and data modeling to building interactive dashboards and delivering business intelligence.</div>
+          <div class="body-text">I'm a Junior at <span class="purdue-gold">Purdue</span> studying Computer Science and Data Science. My experience spans the full data lifecycle-from ETL processes, data modeling and fearure engineering to building interactive dashboards and delivering business intelligence.</div>
 
           <div class="body-text">I've worked as a Data Science Intern at Antsomi and an Analytics Engineer Intern at OCB, where I developed predictive models, optimized data workflows, and created visualization tools that drove decision-making. Whether it's wrangling messy datasets, training machine learning models, or presenting findings to stakeholders, I love creating impacts through solving problems with data.</div>
 
@@ -92,7 +92,7 @@
       <!-- PROJECTS / MY WORK SECTION -->
       <div id="my-work-section">
         <!-- TODO - Change the subheader-text to whatever you want the Projects section header to say -->
-        <span class="subheader-text">My Work/Projects</span>
+        <span class="subheader-text">Work and Projects</span>
 
         <div class="projects-container">
           <!-- 
@@ -117,7 +117,17 @@
                 - SMALL_PROJECT_DESCRIPTION: a quick project description (max 4 lines)
                 - PROJECT_PAGE_NAME.html: the html filename for the project (must be in project-pages folder)
           -->
-
+          <div class="project-card">
+            <img src="./assets/images/zotec.png" class="project-image">
+            <div class="project-card-text-container">
+              <div class="subheader-text project-title">Data Science Intern</div>
+              <div class="body-text project-card-text">incoming, revenue cycle management</div>
+            </div>
+            <!-- <a class="button" href="./project-pages/project-template.html">
+              <span class="button-text">More</span>
+              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
+            </a> -->
+          </div>
           <div class="project-card">
             <img src="./assets/images/antsomi_new.jpg" class="project-image">
             <div class="project-card-text-container">
@@ -134,6 +144,17 @@
             <div class="project-card-text-container">
               <div class="subheader-text project-title">Analytics Intern</div>
               <div class="body-text project-card-text">etl and dashboards</div>
+            </div>
+            <!-- <a class="button" href="./project-pages/project-template.html">
+              <span class="button-text">More</span>
+              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
+            </a> -->
+          </div>
+          <div class="project-card">
+            <img src="./assets/images/vrai.png" class="project-image">
+            <div class="project-card-text-container">
+              <div class="subheader-text project-title">NLP Researcher</div>
+              <div class="body-text project-card-text">academic research and topic modeling</div>
             </div>
             <!-- <a class="button" href="./project-pages/project-template.html">
               <span class="button-text">More</span>
@@ -158,12 +179,12 @@
     <div class="body-text project-card-text">the joy of coding and watching basketball</div>
   </div>
   <div class="button-container">
-    <a class="button" href="https://www.eliteedge.one/">
+    <a class="button" target="_blank" href="https://www.eliteedge.one/">
       <span class="button-text">Visit</span>
       <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
     </a>
-    <a class="button" href="https://medium.com/@maixuankhoi05/a-decade-of-college-basketball-9a0eaeb3806e">
-      <span class="button-text">Medium</span>
+    <a class="button" target="_blank" href="https://medium.com/@maixuankhoi05/a-decade-of-college-basketball-9a0eaeb3806e">
+      <span class="button-text">Blog</span>
       <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon"/>
     </a>
   </div>

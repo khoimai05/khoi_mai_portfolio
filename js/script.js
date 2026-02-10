@@ -14,7 +14,7 @@ if (typedTextElement) {
     if (charIndex < textToType.length) {
       typedTextElement.textContent += textToType.charAt(charIndex);
       charIndex++;
-      setTimeout(typeText, 100); // Adjust speed here (lower = faster)
+      setTimeout(typeText, 250); // Adjust speed here (lower = faster)
     }
     // Removed the code that was removing the cursor
   }
