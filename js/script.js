@@ -4,19 +4,43 @@ if (document.getElementById('my-work-link')) {
   })
 }
 
-// Typing effect
+// Typing effect with delete and retype
 const typedTextElement = document.getElementById('typed-text');
 if (typedTextElement) {
-  const textToType = "Hey, I'm Khoi!";
+  const firstText = "Welcome to my website!";
+  const secondText = "I'm Khoi";
   let charIndex = 0;
+  let isDeleting = false;
+  let isFirstText = true;
   
   function typeText() {
-    if (charIndex < textToType.length) {
-      typedTextElement.textContent += textToType.charAt(charIndex);
+    const currentText = isFirstText ? firstText : secondText;
+    
+    if (!isDeleting && charIndex < currentText.length) {
+      // Typing
+      typedTextElement.textContent += currentText.charAt(charIndex);
       charIndex++;
-      setTimeout(typeText, 250); // Adjust speed here (lower = faster)
+      setTimeout(typeText, 100);
+    } else if (!isDeleting && charIndex === currentText.length) {
+      // Pause before deleting
+      if (isFirstText) {
+        setTimeout(() => {
+          isDeleting = true;
+          typeText();
+        }, 1000); // Pause for 1 second
+      }
+      // If it's the second text, stop here (don't delete)
+    } else if (isDeleting && charIndex > 0) {
+      // Deleting
+      typedTextElement.textContent = currentText.substring(0, charIndex - 1);
+      charIndex--;
+      setTimeout(typeText, 50); // Faster deletion
+    } else if (isDeleting && charIndex === 0) {
+      // Finished deleting, switch to second text
+      isDeleting = false;
+      isFirstText = false;
+      typeText();
     }
-    // Removed the code that was removing the cursor
   }
   
   typeText();
