@@ -215,19 +215,26 @@ cards.forEach(card => {
   });
 });
 
-// Scroll Reveal for About Section
+// Scroll Reveal for Sections (with fade out)
 const aboutSection = document.getElementById('about-section');
+const myWorkSection = document.getElementById('my-work-section');
 
-const aboutObserver = new IntersectionObserver((entries) => {
+const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
+    } else {
+      entry.target.classList.remove('visible');
     }
   });
 }, { threshold: 0.2 });
 
 if (aboutSection) {
-  aboutObserver.observe(aboutSection);
+  sectionObserver.observe(aboutSection);
+}
+
+if (myWorkSection) {
+  sectionObserver.observe(myWorkSection);
 }
 
 // Progress Bar
