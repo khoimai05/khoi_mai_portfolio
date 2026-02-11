@@ -188,11 +188,13 @@ buttons.forEach(button => {
   });
 });
 
-// 3D Card Tilt Effect
+// 3D Card Tilt Effect (Improved)
 const cards = document.querySelectorAll('.project-card');
 
 cards.forEach(card => {
   card.addEventListener('mousemove', (e) => {
+    if (!card.classList.contains('visible')) return; // Only tilt if visible
+    
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -203,10 +205,12 @@ cards.forEach(card => {
     const rotateX = (y - centerY) / 10;
     const rotateY = (centerX - x) / 10;
     
+    card.style.transition = 'transform 0.1s ease-out, opacity 0.6s ease, box-shadow 0.3s ease';
     card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
   });
   
   card.addEventListener('mouseleave', () => {
+    card.style.transition = 'transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease';
     card.style.transform = '';
   });
 });
