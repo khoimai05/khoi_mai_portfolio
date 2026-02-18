@@ -268,13 +268,26 @@ a.icon-link {
   transform: translateX(0);
 }
 
-#my-work-section {
+#skills-section {
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
-#my-work-section.visible {
+#skills-section.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+#work-experience-section,
+#projects-hackathon-section {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+#work-experience-section.visible,
+#projects-hackathon-section.visible {
   opacity: 1;
   transform: translateX(0);
 }

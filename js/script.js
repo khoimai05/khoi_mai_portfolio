@@ -1,6 +1,6 @@
 if (document.getElementById('my-work-link')) {
   document.getElementById('my-work-link').addEventListener('click', () => {
-    document.getElementById('my-work-section').scrollIntoView({behavior: "smooth"})
+    document.getElementById('work-experience-section').scrollIntoView({behavior: "smooth"})
   })
 }
 
@@ -45,8 +45,8 @@ if (typedTextElement) {
   
   typeText();
 }
-// Scroll animation for project cards (all appear together)
-const projectsContainer = document.querySelector('.projects-container');
+// Scroll animation for project cards (all appear together per section)
+const projectsContainers = document.querySelectorAll('.projects-container');
 
 const observerOptions = {
   threshold: 0.1,
@@ -56,20 +56,18 @@ const observerOptions = {
 const observer = new IntersectionObserver(function(entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      // Add visible class to all project cards at once
+      // Add visible class to all project cards in this container
       const cards = entry.target.querySelectorAll('.project-card');
       cards.forEach(card => card.classList.add('visible'));
     } else {
-      // Remove visible class from all project cards
+      // Remove visible class from all project cards in this container
       const cards = entry.target.querySelectorAll('.project-card');
       cards.forEach(card => card.classList.remove('visible'));
     }
   });
 }, observerOptions);
 
-if (projectsContainer) {
-  observer.observe(projectsContainer);
-}
+projectsContainers.forEach(container => observer.observe(container));
 
 // Constellation Background Effect
 const canvas = document.createElement('canvas');
@@ -241,7 +239,9 @@ cards.forEach(card => {
 
 // Scroll Reveal for Sections (with fade out)
 const aboutSection = document.getElementById('about-section');
-const myWorkSection = document.getElementById('my-work-section');
+const skillsSection = document.getElementById('skills-section');
+const workExperienceSection = document.getElementById('work-experience-section');
+const projectsHackathonSection = document.getElementById('projects-hackathon-section');
 
 const sectionObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
@@ -257,8 +257,16 @@ if (aboutSection) {
   sectionObserver.observe(aboutSection);
 }
 
-if (myWorkSection) {
-  sectionObserver.observe(myWorkSection);
+if (skillsSection) {
+  sectionObserver.observe(skillsSection);
+}
+
+if (workExperienceSection) {
+  sectionObserver.observe(workExperienceSection);
+}
+
+if (projectsHackathonSection) {
+  sectionObserver.observe(projectsHackathonSection);
 }
 
 // Progress Bar
