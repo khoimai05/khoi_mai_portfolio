@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  <meta charset="utf-8">
+  <link rel="icon" href="../assets/images/uni.jpg" />
+  <title>A Decade of College Basketball | Khoi Mai</title>
+  <meta name="description" content="Exploring ten years of NCAA basketball data to uncover what separates elite programs from the rest.">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="../css/layout.css">
+  <link rel="stylesheet" href="../css/typography.css">
+  <link rel="stylesheet" href="../css/utilities.css">
+
+  <script defer src="../js/script.js"></script>
+</head>
+  <body>
+    <div class="navbar">
+      <a class="nav-title-link" href="../index.html">
+        <span class="nav-title">Khoi Mai</span>
+      </a>
+      <div class="nav-right">
+        <div class="nav-links">
+          <a href="../journey.html">My Journey</a>
+          <a href="../blog.html">Blog</a>
+        </div>
+        <a class="button" href="../assets/images/Khoi Mai Resume.pdf" target="_blank">
+          <span class="button-text">Resume</span>
+        </a>
+      </div>
+    </div>
+
+    <div id="main-content">
+
+      <a class="blog-back-link" href="../blog.html">&larr; Back to Blog</a>
+
+      <div class="blog-post-meta">
+        <span class="main-title">A Decade of College Basketball</span>
+        <span class="blog-post-date">December 2024</span>
+      </div>
+
+      <div class="long-form-content">
+
+        <div class="body-text">Mackey Arena is the loudest and most magical sports environment I've ever been to. It's the pride of Purdue Basketball and an impenetrable fortress (most of the time). This is where I fell in love with college basketball. The passion, the unpredictableness, the rivalries, and at the center of it all, the love for the game of basketball.</div>
+
+        <div class="body-text">As a self-proclaimed ball knower, I figured it would be fun to look through the data of the last 10 years to see what has changed and build a model to predict the Final 4 of the last four March Madness.</div>
+
+        <div class="body-text">I leveraged the pandasql library to execute SQL queries on the dataset, incorporating CTEs (Common Table Expressions) and table joins to streamline complex data manipulations. For visualization, I utilized Matplotlib and Seaborn to highlight patterns and trends within the data.</div>
+
+        <span class="subheader-text">The Rise of the Three-Pointer</span>
+
+        <div class="body-text">First, let's talk about one of the most monumental changes in college basketball this past decade, the use of three-pointers.</div>
+
+        <div class="body-text">Before 2014, approximately 1 out of every three field goals attempted was behind the three-point line. After, the 3-point attempted rate has increased consistently before peaking at 38.7% in 2019. It then dipped back to 37.5% in 2020 (when the three-point line was moved back) before consistently hovering above 37% since.</div>
+
+        <div class="body-text">Interestingly, although teams have attempted more three-pointers per game this past decade, the three-point made percentage has remained practically unchanged.</div>
+
+        <div class="body-text">Although peaking at an efficient 34.97% in 2018, 3PM% has decreased dramatically and bottomed at 33.2% in 2020 and going back up to 33.7% in the last season.</div>
+
+        <span class="subheader-text">The Final Four Landscape</span>
+
+        <div class="body-text">Since 2013, an astounding 30 different teams have been to the Final Four. 11 teams have been there more than once and North Carolina, Villanova, and Connecticut topped the table with three appearances. Out of these three, Uconn has won every time they've been to the Final Four. This is what I love about college basketball: everyone has a chance to write their own story. Whether it's about a college basketball powerhouse dominating everyone to win a well-deserving championship or an underdog against all odds defeating the Goliath, something special is always in the making.</div>
+
+        <div class="body-text">Although there are a total of 32 conferences in D1, 6 stood out as basketball power conferences. These are: Big Ten, Big Twelve, SEC, ACC, PAC 12, and Big East. They all made up a huge portion of teams in March.</div>
+
+        <div class="body-text">Predicting the Final 4 is not as easy as picking the top seed of each region. The average seed of the Final Four teams throughout the years is never below 2, which indicates that there hasn't been a Final Four of all 1 and 2 seeds in the last decade.</div>
+
+        <span class="subheader-text">Modeling</span>
+
+        <div class="body-text">I have dropped all the teams that weren't selected for March Madness and encoded the Postseason accomplishments of all teams from a scale of 0 to 7 (R68 to Champion).</div>
+
+<pre><code>df.dropna(subset=['POSTSEASON'], inplace=True)
+round_mapping = {
+    'R68': 0, 'R64': 1, 'R32': 2, 'S16': 3,
+    'E8': 4, 'F4': 5, '2ND': 6, 'Champions': 7
+}
+df['POSTSEASON'] = df['POSTSEASON'].map(round_mapping)</code></pre>
+
+        <div class="body-text">I then apply Min-Max Scaling since this would make all the data fall between 0 and 1. Min-Max Scaling helps standardize the data range without distorting the relationships among the variables, ensuring that no single feature dominates the model due to its magnitude. One of the drawbacks is that it's sensitive to outliers but since we are trying to find the top 4 teams of every year, I believe this would work perfectly. Furthermore, we are scaling by year since the level of competition each year is different since a final-four caliber team this year could be a sweet-sixteen team a different year.</div>
+
+<pre><code>columns = [
+    "ADJEM", "ADJOE", "ADJDE", "EFG_O", "EFG_D", "TOM", "TOR",
+    "RBM", "TORD", "ORB", "DRB", "FTR", "FTRD", "2P_O", "2P_D",
+    "3P_O", "3P_D", "ADJ_T", "WAB", "Year", "BARTHAG"
+]
+
+from sklearn.preprocessing import MinMaxScaler
+scaler = MinMaxScaler()
+scaled_df = pd.DataFrame()
+
+for year, group in df.groupby("Year"):
+    scaled_data = scaler.fit_transform(group[columns])
+    scaled_group = pd.DataFrame(scaled_data, columns=columns, index=group.index)
+    scaled_group["Year"] = year
+    scaled_df = pd.concat([scaled_df, scaled_group])
+
+df[columns] = scaled_df[columns]</code></pre>
+
+        <div class="body-text">I tried to engineer some new features and have come up with three:</div>
+
+        <div class="body-text">
+          1. <strong>ADJEM</strong> (Adjusted Efficiency Margin): Adjusted Offensive Efficiency &minus; Adjusted Defensive Efficiency<br>
+          2. <strong>Power Conferences</strong>: whether or not they are in one<br>
+          3. <strong>RBM</strong> (Rebound Margin): Offensive Rebound Rate &minus; Offensive Rebound Allowed<br>
+          4. <strong>TOM</strong> (Turnover Margin): Steal rate &minus; Turnover rate
+        </div>
+
+        <span class="subheader-text">Approach</span>
+
+        <div class="body-text">I began with a baseline model that predicts the Final Four teams by selecting the team with the highest ADJEM (Adjusted Efficiency Margin) from each region. This straightforward approach provides a benchmark for comparison with more sophisticated models.</div>
+
+        <div class="body-text">To enhance prediction accuracy, I then implemented models using Logistic Regression and a Random Forest Classifier, hoping to leverage their strengths in classification tasks to capture more nuanced relationships in the data.</div>
+
+        <span class="subheader-text">Results</span>
+
+        <div class="body-text"><strong>2021:</strong><br>
+        Actual: Gonzaga, Baylor, Houston, UCLA<br>
+        Baseline: Gonzaga, Baylor, Houston, Michigan<br>
+        Logistic Regression: Gonzaga, Baylor, Houston, Michigan<br>
+        Random Forest: Gonzaga, Baylor, Houston, Michigan</div>
+
+        <div class="body-text"><strong>2022:</strong><br>
+        Actual: Kansas, Villanova, Duke, North Carolina<br>
+        Baseline: Kansas, Houston, Baylor, Gonzaga<br>
+        Logistic Regression: Houston, UCLA, Marquette, Alabama<br>
+        Random Forest: Kansas, Houston, Baylor, Gonzaga</div>
+
+        <div class="body-text"><strong>2023</strong> (not a good year for betting):<br>
+        Actual: Uconn, SDSU, FAU, Miami<br>
+        Baseline: Uconn, Alabama, Houston, Purdue<br>
+        Logistic Regression: Uconn, Alabama, Houston, Purdue<br>
+        Random Forest: Uconn, Alabama, Houston, Purdue</div>
+
+        <div class="body-text"><strong>2024:</strong><br>
+        Actual: Uconn, Purdue, Alabama, NC State<br>
+        Baseline: Uconn, Purdue, Houston, Arizona<br>
+        Logistic Regression: Uconn, Purdue, Houston, Arizona<br>
+        Random Forest: Uconn, Purdue, Houston, Saint Mary's</div>
+
+        <div class="body-text"><strong>Final Result:</strong><br>
+        Baseline: 7/16<br>
+        Logistic Regression: 6/16<br>
+        Random Forest: 7/16</div>
+
+        <div class="body-text">Given that less than 1% of all brackets guessed the correct Final Four, this could be a solid guideline for what teams to pick during March.</div>
+
+      </div>
+
+    </div>
+
+    <div id="footer">
+      <a class="icon-link" target="_blank" href="https://www.linkedin.com/in/khoi-maix/">
+        <img src="../assets/icons/li.svg" class="footer-icon"/>
+      </a>
+      <a class="icon-link" href="mailto:maixuankhoi05@gmail.com">
+        <img src="../assets/icons/mail.svg" class="footer-icon"/>
+      </a>
+      <a class="icon-link" target="_blank" href="https://medium.com/@maixuankhoi05">
+        <img src="../assets/icons/Medium.svg" class="footer-icon"/>
+      </a>
+      <a class="icon-link" target="_blank" href="https://github.com/khoimai05">
+        <img src="../assets/icons/github.svg" class="footer-icon"/>
+      </a>
+    </div>
+  </body>
+</html>

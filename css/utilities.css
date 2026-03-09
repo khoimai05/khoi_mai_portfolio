@@ -55,6 +55,52 @@ a.icon-link:hover {
 }
 
 
+/* Nav Links */
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.nav-links a {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover {
+  border-bottom-color: #CFB991;
+  color: #CFB991;
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-right {
+    gap: 16px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+}
+
+
 /* Button Styling */
 
 a.button {
@@ -112,7 +158,7 @@ a.no-underline:hover {
 body {
   background: linear-gradient(-45deg, #151515, #2d2d2d, #1a1a1a, #2a251f);
   background-size: 400% 400%;
-  animation: gradientShift 12s ease infinite, fadeIn 0.8s ease-in;
+  animation: gradientShift 30s ease infinite, fadeIn 0.8s ease-in;
   color: #ffffff;
 }
 
@@ -189,29 +235,11 @@ a.icon-link {
   color: #CFB991;
 }
 
-/* Typing Effect */
-#typed-text {
-  border-right: 3px solid #ffffff;
-  padding-right: 5px;
-  animation: blink 0.7s step-end infinite;
-}
-
-@keyframes blink {
-  from, to {
-    border-color: transparent;
-  }
-  50% {
-    border-color: #ffffff;
-  }
-}
-
 /* Scroll Animation for Projects */
 .project-card {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  transform-style: preserve-3d;
-  perspective: 1000px;
 }
 
 .project-card.visible {

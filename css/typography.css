@@ -3,11 +3,13 @@ body {
 }
 
 .nav-title {
+  font-family: 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 24px;
 }
 
 .button-text {
+  font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 700;
 }
@@ -18,12 +20,15 @@ body {
 }
 
 .main-title {
-  font-size: 40px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 56px;
   font-weight: 700;
+  line-height: 1.1;
 }
 
 .subheader-text {
-  font-size: 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 22px;
   font-weight: 700;
 }
 
@@ -41,6 +46,7 @@ body {
 }
 
 .project-title {
+  font-family: 'DM Sans', sans-serif;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
