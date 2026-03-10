@@ -189,30 +189,33 @@ const cursorDot = document.getElementById('cursor-dot');
 const cursorOutline = document.getElementById('cursor-outline');
 
 if (cursorDot && cursorOutline) {
-  window.addEventListener('mousemove', (e) => {
-    const posX = e.clientX;
-    const posY = e.clientY;
+  // Only execute custom cursor logic on devices with a fine pointer (mouse/trackpad)
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    window.addEventListener('mousemove', (e) => {
+      const posX = e.clientX;
+      const posY = e.clientY;
 
-    cursorDot.style.left = `${posX}px`;
-    cursorDot.style.top = `${posY}px`;
+      cursorDot.style.left = `${posX}px`;
+      cursorDot.style.top = `${posY}px`;
 
-    cursorOutline.animate({
-      left: `${posX}px`,
-      top: `${posY}px`
-    }, { duration: 500, fill: "forwards" });
-  });
-
-  // Add hover state for the viewfinder rotation
-  const interactables = document.querySelectorAll('a, button, .magnetic-btn, .magnetic-card, .project-card');
-
-  interactables.forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      document.body.classList.add('hovering');
+      cursorOutline.animate({
+        left: `${posX}px`,
+        top: `${posY}px`
+      }, { duration: 500, fill: "forwards" });
     });
-    el.addEventListener('mouseleave', () => {
-      document.body.classList.remove('hovering');
+
+    // Add hover state for the viewfinder rotation
+    const interactables = document.querySelectorAll('a, button, .magnetic-btn, .magnetic-card, .project-card');
+
+    interactables.forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        document.body.classList.add('hovering');
+      });
+      el.addEventListener('mouseleave', () => {
+        document.body.classList.remove('hovering');
+      });
     });
-  });
+  }
 }
 
 // Smart Navbar

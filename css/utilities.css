@@ -392,107 +392,109 @@ a.icon-link {
 
 /* --- New Visual Polish Utilities --- */
 
-/* Custom Cursor */
-body {
-  cursor: none;
-  /* Hide default cursor */
+/* Custom Cursor (Only for non-touch devices) */
+@media (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+    /* Hide default cursor */
+  }
+
+  a,
+  button,
+  .magnetic-btn,
+  .magnetic-card {
+    cursor: none;
+    /* Hide default pointer over interactables */
+  }
+
+  .cursor-dot {
+    width: 4px;
+    height: 4px;
+    background-color: #CFB991;
+  }
+
+  .cursor-outline {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(207, 185, 145, 0.7);
+    border-radius: 0;
+    /* Square for the viewfinder aesthetic */
+    transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+      height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+      transform 0.15s ease-out,
+      border-color 0.3s ease;
+    position: relative;
+  }
+
+  /* Corner brackets for the viewfinder */
+  .cursor-outline::before,
+  .cursor-outline::after {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-color: #CFB991;
+    border-style: solid;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  }
+
+  .cursor-outline::before {
+    top: -1px;
+    left: -1px;
+    border-width: 2px 0 0 2px;
+  }
+
+  .cursor-outline::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 2px 2px 0;
+  }
+
+  .cursor-dot,
+  .cursor-outline-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    pointer-events: none;
+  }
+
+  .cursor-outline-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Ensure the wrapper rotation works via JS class toggle as pure CSS sibling won't reach it easily */
+  body.hovering .cursor-outline {
+    width: 48px;
+    height: 48px;
+    transform: rotate(45deg);
+    border-color: rgba(207, 185, 145, 0.1);
+  }
+
+  body.hovering .cursor-outline::before,
+  body.hovering .cursor-outline::after {
+    border-color: #CFB991;
+  }
+
+  body.hovering .cursor-dot {
+    opacity: 0;
+    /* Fade out dot on hover */
+  }
 }
 
-a,
-button,
-.magnetic-btn,
-.magnetic-card {
-  cursor: none;
-  /* Hide default pointer over interactables */
+/* Hide fallback DOM elements entirely on touch devices */
+@media (hover: none) and (pointer: coarse) {
+
+  .cursor-dot,
+  .cursor-outline-wrapper {
+    display: none !important;
+  }
 }
 
-.cursor-dot {
-  width: 4px;
-  height: 4px;
-  background-color: #CFB991;
-}
 
-.cursor-outline {
-  width: 32px;
-  height: 32px;
-  border: 1px solid rgba(207, 185, 145, 0.7);
-  border-radius: 0;
-  /* Square for the viewfinder aesthetic */
-  transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
-    height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
-    transform 0.15s ease-out,
-    border-color 0.3s ease;
-  position: relative;
-}
-
-/* Corner brackets for the viewfinder */
-.cursor-outline::before,
-.cursor-outline::after {
-  content: '';
-  position: absolute;
-  width: 8px;
-  height: 8px;
-  border-color: #CFB991;
-  border-style: solid;
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-}
-
-.cursor-outline::before {
-  top: -1px;
-  left: -1px;
-  border-width: 2px 0 0 2px;
-}
-
-.cursor-outline::after {
-  bottom: -1px;
-  right: -1px;
-  border-width: 0 2px 2px 0;
-}
-
-.cursor-dot,
-.cursor-outline-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  transform: translate(-50%, -50%);
-  z-index: 10000;
-  pointer-events: none;
-}
-
-.cursor-outline-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* The following selectors are likely intended to be handled by JS adding a class to body */
-/* a:hover ~ document .cursor-outline-wrapper .cursor-outline,
-.button:hover ~ document .cursor-outline-wrapper .cursor-outline,
-.magnetic-btn:hover ~ document .cursor-outline-wrapper .cursor-outline,
-.magnetic-card:hover ~ document .cursor-outline-wrapper .cursor-outline {
-  width: 48px;
-  height: 48px;
-  transform: rotate(45deg);
-  border-color: transparent;
-} */
-
-/* Ensure the wrapper rotation works via JS class toggle as pure CSS sibling won't reach it easily */
-body.hovering .cursor-outline {
-  width: 48px;
-  height: 48px;
-  transform: rotate(45deg);
-  border-color: rgba(207, 185, 145, 0.1);
-}
-
-body.hovering .cursor-outline::before,
-body.hovering .cursor-outline::after {
-  border-color: #CFB991;
-}
-
-body.hovering .cursor-dot {
-  opacity: 0;
-  /* Fade out dot on hover */
-}
 
 /* Smart Navbar Hidden State */
 .navbar {
