@@ -105,12 +105,15 @@
       <div class="body-text">I have dropped all the teams that weren't selected for March Madness and encoded the
         Postseason accomplishments of all teams from a scale of 0 to 7 (R68 to Champion).</div>
 
-      <pre><code>df.dropna(subset=['POSTSEASON'], inplace=True)
+      <div class="nb-cell">
+        <span class="nb-prompt">In [1]:</span>
+        <pre><code>df.dropna(subset=['POSTSEASON'], inplace=True)
 round_mapping = {
     'R68': 0, 'R64': 1, 'R32': 2, 'S16': 3,
     'E8': 4, 'F4': 5, '2ND': 6, 'Champions': 7
 }
 df['POSTSEASON'] = df['POSTSEASON'].map(round_mapping)</code></pre>
+      </div>
 
       <div class="body-text">I then apply Min-Max Scaling since this would make all the data fall between 0 and 1.
         Min-Max Scaling helps standardize the data range without distorting the relationships among the variables,
@@ -119,7 +122,9 @@ df['POSTSEASON'] = df['POSTSEASON'].map(round_mapping)</code></pre>
         perfectly. Furthermore, we are scaling by year since the level of competition each year is different since a
         final-four caliber team this year could be a sweet-sixteen team a different year.</div>
 
-      <pre><code>columns = [
+      <div class="nb-cell">
+        <span class="nb-prompt">In [2]:</span>
+        <pre><code>columns = [
     "ADJEM", "ADJOE", "ADJDE", "EFG_O", "EFG_D", "TOM", "TOR",
     "RBM", "TORD", "ORB", "DRB", "FTR", "FTRD", "2P_O", "2P_D",
     "3P_O", "3P_D", "ADJ_T", "WAB", "Year", "BARTHAG"
@@ -136,6 +141,7 @@ for year, group in df.groupby("Year"):
     scaled_df = pd.concat([scaled_df, scaled_group])
 
 df[columns] = scaled_df[columns]</code></pre>
+      </div>
 
       <div class="body-text">I tried to engineer some new features and have come up with three:</div>
 
@@ -159,34 +165,39 @@ df[columns] = scaled_df[columns]</code></pre>
 
       <span class="subheader-text">Results</span>
 
-      <div class="body-text"><strong>2021:</strong><br>
-        Actual: Gonzaga, Baylor, Houston, UCLA<br>
-        Baseline: Gonzaga, Baylor, Houston, Michigan<br>
-        Logistic Regression: Gonzaga, Baylor, Houston, Michigan<br>
-        Random Forest: Gonzaga, Baylor, Houston, Michigan</div>
+      <div class="nb-cell nb-output">
+        <span class="nb-prompt">Out [3]:</span>
+        <div class="nb-output-content">
+          <strong>2021:</strong><br>
+          Actual: Gonzaga, Baylor, Houston, UCLA<br>
+          Baseline: Gonzaga, Baylor, Houston, Michigan<br>
+          Logistic Regression: Gonzaga, Baylor, Houston, Michigan<br>
+          Random Forest: Gonzaga, Baylor, Houston, Michigan<br><br>
 
-      <div class="body-text"><strong>2022:</strong><br>
-        Actual: Kansas, Villanova, Duke, North Carolina<br>
-        Baseline: Kansas, Houston, Baylor, Gonzaga<br>
-        Logistic Regression: Houston, UCLA, Marquette, Alabama<br>
-        Random Forest: Kansas, Houston, Baylor, Gonzaga</div>
+          <strong>2022:</strong><br>
+          Actual: Kansas, Villanova, Duke, North Carolina<br>
+          Baseline: Kansas, Houston, Baylor, Gonzaga<br>
+          Logistic Regression: Houston, UCLA, Marquette, Alabama<br>
+          Random Forest: Kansas, Houston, Baylor, Gonzaga<br><br>
 
-      <div class="body-text"><strong>2023</strong> (not a good year for betting):<br>
-        Actual: Uconn, SDSU, FAU, Miami<br>
-        Baseline: Uconn, Alabama, Houston, Purdue<br>
-        Logistic Regression: Uconn, Alabama, Houston, Purdue<br>
-        Random Forest: Uconn, Alabama, Houston, Purdue</div>
+          <strong>2023</strong> (not a good year for betting):<br>
+          Actual: Uconn, SDSU, FAU, Miami<br>
+          Baseline: Uconn, Alabama, Houston, Purdue<br>
+          Logistic Regression: Uconn, Alabama, Houston, Purdue<br>
+          Random Forest: Uconn, Alabama, Houston, Purdue<br><br>
 
-      <div class="body-text"><strong>2024:</strong><br>
-        Actual: Uconn, Purdue, Alabama, NC State<br>
-        Baseline: Uconn, Purdue, Houston, Arizona<br>
-        Logistic Regression: Uconn, Purdue, Houston, Arizona<br>
-        Random Forest: Uconn, Purdue, Houston, Saint Mary's</div>
+          <strong>2024:</strong><br>
+          Actual: Uconn, Purdue, Alabama, NC State<br>
+          Baseline: Uconn, Purdue, Houston, Arizona<br>
+          Logistic Regression: Uconn, Purdue, Houston, Arizona<br>
+          Random Forest: Uconn, Purdue, Houston, Saint Mary's<br><br>
 
-      <div class="body-text"><strong>Final Result:</strong><br>
-        Baseline: 7/16<br>
-        Logistic Regression: 6/16<br>
-        Random Forest: 7/16</div>
+          <strong>Final Result:</strong><br>
+          Baseline: 7/16<br>
+          Logistic Regression: 6/16<br>
+          Random Forest: 7/16
+        </div>
+      </div>
 
       <div class="body-text">Given that less than 1% of all brackets guessed the correct Final Four, this could be a
         solid guideline for what teams to pick during March.</div>

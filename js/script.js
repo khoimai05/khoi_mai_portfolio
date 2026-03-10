@@ -23,7 +23,7 @@ const observer = new IntersectionObserver(function (entries) {
 
 projectsContainers.forEach(container => observer.observe(container));
 
-// Constellation Background Effect
+// Data Grid Background Effect
 const canvas = document.createElement('canvas');
 canvas.id = 'constellation-canvas';
 document.body.appendChild(canvas);
@@ -32,112 +32,176 @@ const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-// Particle settings
-const particles = [];
-const particleCount = 80;
-const maxDistance = 150;
-const mouseDistance = 200;
+const gridSpacing = 60;
+const dotRadius = 1.5;
+const mouseRadius = 180;
+const tickLen = 4;
 let mouse = { x: null, y: null };
 
-// Create particles
-class Particle {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = (Math.random() - 0.5) * 0.5;
-    this.vy = (Math.random() - 0.5) * 0.5;
-    this.radius = 2;
+// Scatter data points that drift slowly
+const scatterPoints = [];
+const scatterCount = 25;
+
+function seedRandom(seed) {
+  let s = seed;
+  return function () {
+    s = (s * 16807 + 0) % 2147483647;
+    return s / 2147483647;
+  };
+}
+
+function initScatterPoints() {
+  scatterPoints.length = 0;
+  const rng = seedRandom(42);
+  for (let i = 0; i < scatterCount; i++) {
+    scatterPoints.push({
+      x: rng() * canvas.width,
+      y: rng() * canvas.height,
+      baseRadius: 2 + rng() * 2.5,
+      vx: (rng() - 0.5) * 0.15,
+      vy: (rng() - 0.5) * 0.15,
+      opacity: 0.08 + rng() * 0.12,
+    });
   }
+}
 
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
+initScatterPoints();
 
-    // Bounce off edges
-    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+function drawGrid() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    // Mouse interaction
-    if (mouse.x && mouse.y) {
-      const dx = mouse.x - this.x;
-      const dy = mouse.y - this.y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+  const cols = Math.ceil(canvas.width / gridSpacing) + 1;
+  const rows = Math.ceil(canvas.height / gridSpacing) + 1;
 
-      if (distance < mouseDistance) {
-        const angle = Math.atan2(dy, dx);
-        const force = (mouseDistance - distance) / mouseDistance;
-        this.vx -= Math.cos(angle) * force * 0.05;
-        this.vy -= Math.sin(angle) * force * 0.05;
-      }
-    }
-
-    // Speed limit
-    const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
-    if (speed > 2) {
-      this.vx = (this.vx / speed) * 2;
-      this.vy = (this.vy / speed) * 2;
-    }
-  }
-
-  draw() {
-    ctx.fillStyle = 'rgba(207, 185, 145, 0.8)'; // Purdue gold
+  // Grid lines
+  for (let i = 0; i < cols; i++) {
+    const x = i * gridSpacing;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, canvas.height);
+    ctx.strokeStyle = 'rgba(207, 185, 145, 0.04)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
   }
-}
 
-// Initialize particles
-for (let i = 0; i < particleCount; i++) {
-  particles.push(new Particle());
-}
+  for (let j = 0; j < rows; j++) {
+    const y = j * gridSpacing;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(canvas.width, y);
+    ctx.strokeStyle = 'rgba(207, 185, 145, 0.04)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
 
-// Draw connections
-function drawConnections() {
-  for (let i = 0; i < particles.length; i++) {
-    for (let j = i + 1; j < particles.length; j++) {
-      const dx = particles[i].x - particles[j].x;
-      const dy = particles[i].y - particles[j].y;
-      const distance = Math.sqrt(dx * dx + dy * dy);
+  // Axis ticks along left edge and top edge
+  ctx.strokeStyle = 'rgba(207, 185, 145, 0.12)';
+  ctx.lineWidth = 1;
+  for (let j = 0; j < rows; j++) {
+    const y = j * gridSpacing;
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(tickLen, y);
+    ctx.stroke();
+  }
+  for (let i = 0; i < cols; i++) {
+    const x = i * gridSpacing;
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, tickLen);
+    ctx.stroke();
+  }
 
-      if (distance < maxDistance) {
-        const opacity = (1 - distance / maxDistance) * 0.3;
-        ctx.strokeStyle = `rgba(207, 185, 145, ${opacity})`;
+  // Grid intersection dots with mouse proximity glow
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      const x = i * gridSpacing;
+      const y = j * gridSpacing;
+
+      let radius = dotRadius;
+      let opacity = 0.15;
+
+      if (mouse.x !== null && mouse.y !== null) {
+        const dx = mouse.x - x;
+        const dy = mouse.y - y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < mouseRadius) {
+          const proximity = 1 - dist / mouseRadius;
+          radius = dotRadius + proximity * 3;
+          opacity = 0.15 + proximity * 0.6;
+        }
+      }
+
+      ctx.beginPath();
+      ctx.arc(x, y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(207, 185, 145, ${opacity})`;
+      ctx.fill();
+    }
+  }
+
+  // Floating scatter data points
+  for (const pt of scatterPoints) {
+    pt.x += pt.vx;
+    pt.y += pt.vy;
+
+    if (pt.x < 0 || pt.x > canvas.width) pt.vx *= -1;
+    if (pt.y < 0 || pt.y > canvas.height) pt.vy *= -1;
+
+    let r = pt.baseRadius;
+    let o = pt.opacity;
+
+    if (mouse.x !== null && mouse.y !== null) {
+      const dx = mouse.x - pt.x;
+      const dy = mouse.y - pt.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < mouseRadius) {
+        const proximity = 1 - dist / mouseRadius;
+        r += proximity * 3;
+        o += proximity * 0.35;
+
+        // Crosshair on nearby scatter points
+        ctx.strokeStyle = `rgba(207, 185, 145, ${proximity * 0.2})`;
         ctx.lineWidth = 1;
         ctx.beginPath();
-        ctx.moveTo(particles[i].x, particles[i].y);
-        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.moveTo(pt.x - 8, pt.y);
+        ctx.lineTo(pt.x + 8, pt.y);
+        ctx.moveTo(pt.x, pt.y - 8);
+        ctx.lineTo(pt.x, pt.y + 8);
         ctx.stroke();
       }
     }
+
+    ctx.beginPath();
+    ctx.arc(pt.x, pt.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(207, 185, 145, ${o})`;
+    ctx.fill();
   }
+
+  // Coordinate readout near cursor
+  if (mouse.x !== null && mouse.y !== null) {
+    const gridX = (mouse.x / gridSpacing).toFixed(1);
+    const gridY = (mouse.y / gridSpacing).toFixed(1);
+    ctx.font = '10px "DM Sans", sans-serif';
+    ctx.fillStyle = 'rgba(207, 185, 145, 0.25)';
+    ctx.fillText(`(${gridX}, ${gridY})`, mouse.x + 14, mouse.y - 10);
+  }
+
+  requestAnimationFrame(drawGrid);
 }
 
-// Animation loop
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
+drawGrid();
 
-  particles.forEach(particle => {
-    particle.update();
-    particle.draw();
-  });
-
-  drawConnections();
-  requestAnimationFrame(animate);
-}
-
-animate();
-
-// Mouse tracking (on document since canvas has pointer-events: none)
 document.addEventListener('mousemove', (e) => {
   mouse.x = e.clientX;
   mouse.y = e.clientY;
 });
 
-// Resize handler
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  initScatterPoints();
 });
 
 
@@ -233,63 +297,26 @@ if (navbar) {
   });
 }
 
-// Typing Animation
-const typingTexts = ["CS and DS Student", "Boilermaker", "Max Verstappen Fan"]
-let typingCount = 0;
-let typingIndex = 0;
-let currentTypingText = "";
-let currentLetter = "";
-const typingElement = document.querySelector('.typing-text');
-let isDeleting = false;
+// Portrait Tilt Effect
+const blobTilt = document.querySelector('.blob-tilt');
 
-function typeEffect() {
-  if (!typingElement) return;
+if (blobTilt && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  const container = blobTilt.closest('#portfolio-header-image-container') || blobTilt.parentElement;
 
-  if (typingCount === typingTexts.length) {
-    typingCount = 0;
-  }
+  container.addEventListener('mousemove', (e) => {
+    const rect = container.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
 
-  currentTypingText = typingTexts[typingCount];
+    const rotateX = (centerY - y) / 12;
+    const rotateY = (x - centerX) / 12;
 
-  if (isDeleting) {
-    currentLetter = currentTypingText.slice(0, --typingIndex);
-  } else {
-    currentLetter = currentTypingText.slice(0, ++typingIndex);
-  }
-
-  typingElement.textContent = currentLetter;
-
-  let typeSpeed = isDeleting ? 40 : 100;
-
-  if (!isDeleting && currentLetter.length === currentTypingText.length) {
-    typeSpeed = 2000; // Pause at end of word
-    isDeleting = true;
-  } else if (isDeleting && currentLetter.length === 0) {
-    isDeleting = false;
-    typingCount++;
-    typeSpeed = 500; // Pause before new word
-  }
-
-  setTimeout(typeEffect, typeSpeed);
-}
-
-if (typingElement) {
-  typeEffect();
-}
-
-// Magnetic Buttons
-const magneticBtns = document.querySelectorAll('.magnetic-btn');
-
-magneticBtns.forEach(btn => {
-  btn.addEventListener('mousemove', (e) => {
-    const position = btn.getBoundingClientRect();
-    const x = e.clientX - position.left - position.width / 2;
-    const y = e.clientY - position.top - position.height / 2;
-
-    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+    blobTilt.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
   });
 
-  btn.addEventListener('mouseout', () => {
-    btn.style.transform = 'translate(0px, 0px)';
+  container.addEventListener('mouseleave', () => {
+    blobTilt.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale(1)';
   });
-});
+}

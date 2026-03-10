@@ -551,22 +551,3 @@ a.icon-link {
 .blob-tilt:hover {
   box-shadow: 0 20px 40px rgba(207, 185, 145, 0.25);
 }
-
-/* Typing Cursor Animation */
-.typing-cursor {
-  display: inline-block;
-  color: #CFB991;
-  animation: blink 1s step-end infinite;
-}
-
-@keyframes blink {
-
-  0%,
-  100% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0;
-  }
-}

@@ -306,8 +306,74 @@ body {
 }
 
 .long-form-content code {
-  font-family: 'Courier New', Courier, monospace;
+  font-family: Menlo, Consolas, 'Courier New', monospace;
   color: #CFB991;
+}
+
+/* Jupyter Notebook Cells */
+
+.nb-cell {
+  position: relative;
+  padding-left: 72px;
+}
+
+.nb-prompt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-family: Menlo, Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(207, 185, 145, 0.6);
+  white-space: nowrap;
+  user-select: none;
+  line-height: 1.6;
+  padding-top: 20px;
+}
+
+.nb-cell pre {
+  margin: 0;
+  border-left: 3px solid rgba(207, 185, 145, 0.35);
+  border-radius: 0 8px 8px 0;
+}
+
+.nb-cell.nb-output {
+  padding-left: 72px;
+}
+
+.nb-cell.nb-output .nb-prompt {
+  color: rgba(207, 185, 145, 0.4);
+  padding-top: 0;
+}
+
+.nb-cell.nb-output .nb-output-content {
+  background: rgba(255, 255, 255, 0.03);
+  border-left: 3px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0 8px 8px 0;
+  padding: 16px 20px;
+  font-family: Menlo, Consolas, 'Courier New', monospace;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.nb-cell.nb-output .nb-output-content strong {
+  color: #CFB991;
+}
+
+@media only screen and (max-width: 600px) {
+  .nb-cell,
+  .nb-cell.nb-output {
+    padding-left: 0;
+    padding-top: 28px;
+  }
+
+  .nb-prompt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-top: 0;
+  }
 }
 
 .page-hero {
