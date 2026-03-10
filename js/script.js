@@ -193,10 +193,12 @@ function drawGrid() {
 
 drawGrid();
 
-document.addEventListener('mousemove', (e) => {
-  mouse.x = e.clientX;
-  mouse.y = e.clientY;
-});
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+  document.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+  });
+}
 
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
