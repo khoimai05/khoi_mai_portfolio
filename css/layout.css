@@ -106,6 +106,28 @@ body {
   border: 1px solid rgba(207, 185, 145, 0.5);
   background: rgba(207, 185, 145, 0.1);
   color: #CFB991;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.3s ease;
+}
+
+.skill-pill:hover {
+  background: rgba(207, 185, 145, 0.25);
+  border-color: #CFB991;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(207, 185, 145, 0.2);
+}
+
+.skill-pill i {
+  font-size: 18px;
+}
+
+.skill-icon {
+  width: 18px;
+  height: 18px;
+  /* Hex to CSS Filter for #CFB991 */
+  filter: brightness(0) saturate(100%) invert(80%) sepia(21%) saturate(308%) hue-rotate(352deg) brightness(88%) contrast(90%);
 }
 
 
@@ -125,40 +147,65 @@ body {
   flex-wrap: wrap;
 }
 
-    /* Project Cards */
+/* Project Cards */
 
-    .project-card {
-      max-width: calc((100% - 32px) / 3);
-      display: flex;
-      flex-direction: column;
-      gap: 34px;
-      background: rgba(42, 42, 42, 0.15);
-      backdrop-filter: blur(20px) saturate(180%);
-      -webkit-backdrop-filter: blur(20px) saturate(180%);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 12px;
-      padding: 16px;
-      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-    }
+.project-card {
+  max-width: calc((100% - 32px) / 3);
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+  background: rgba(42, 42, 42, 0.15);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
 
-    .project-card-text-container {
-      flex-direction: column;
-      display: flex;
-      gap: 16px
-    }
+.project-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 12px;
+  padding: 2px;
+  background: linear-gradient(135deg, rgba(207, 185, 145, 0.4), transparent 50%, rgba(207, 185, 145, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
 
-    .project-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      object-position: center;
-      transition: transform 0.3s ease;
-      overflow: hidden;
-    }
+.project-card:hover::before {
+  opacity: 1;
+}
 
-    .project-card:hover .project-image {
-      transform: scale(1.05);
-    }
+.project-card-text-container {
+  flex-direction: column;
+  display: flex;
+  gap: 16px
+}
+
+.project-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.05);
+}
 
 
 
@@ -188,35 +235,35 @@ body {
   gap: 34px;
 }
 
-    /* Project Gallery */
+/* Project Gallery */
 
-    #project-gallery {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
+#project-gallery {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
 
-    .project-gallery-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 34px 16px;
-    }
+.project-gallery-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 34px 16px;
+}
 
-    .gallery-image-container {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
+.gallery-image-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
 
-    .gallery-image-container.half-width {
-      width: calc((100% - 16px) / 2);
-    }
+.gallery-image-container.half-width {
+  width: calc((100% - 16px) / 2);
+}
 
-    .gallery-image {
-      width: 100%;
-      height: auto;
-    }
+.gallery-image {
+  width: 100%;
+  height: auto;
+}
 
 
 /* Long-Form Content (Journey + Blog Posts) */
@@ -320,6 +367,7 @@ body {
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 3;
+  line-clamp: 3;
   -webkit-box-orient: vertical;
 }
 

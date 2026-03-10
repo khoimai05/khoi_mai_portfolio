@@ -8,6 +8,16 @@
   <meta name="description" content="A portfolio.">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+  <!-- Open Graph / SEO -->
+  <meta property="og:title" content="Khoi Mai - Portfolio" />
+  <meta property="og:description" content="Data Science & Analytics Student at Purdue University." />
+  <meta property="og:image" content="./assets/images/new_potrait.jpg" />
+  <meta property="og:url" content="https://khoimai05.github.io/" />
+  <meta property="og:type" content="website" />
+
+  <!-- Devicon for Skills -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,6 +33,12 @@
 </head>
 
 <body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline-wrapper" id="cursor-outline">
+    <div class="cursor-outline"></div>
+  </div>
+
   <!-- NAVBAR -->
   <div class="navbar">
     <a class="nav-title-link" href="./index.html">
@@ -52,7 +68,7 @@
             - Change the number to point to your Unemployable & replace the OpenSea link with your own
             - If you aren't using an Unemployable as your image, remove the entire "a" element
           -->
-        <img src="./assets/images/new_potrait.jpg" class="portfolio-header-image">
+        <img src="./assets/images/new_potrait.jpg" alt="Khoi Mai Portrait" class="portfolio-header-image blob-tilt">
         <a class="no-underline" target="_blank"
           href="https://opensea.io/assets/0xe0be388ab81c47b0f098d2030a1c9ef190691a8a/1311">
           <span class="image-caption"></span>
@@ -68,13 +84,15 @@
           -->
       <div id="portfolio-header-text-container">
         <div class="header-text">
-          <span class="main-title">Hey, I'm Khoi!</span>
-          <div class="body-text"><span class="purdue-gold">purdue cs and ds (boiler up!)</span></div>
-          <!-- <div class="body-text">incoming ds intern summer '26</div>            -->
+          <span class="main-title text-gradient">Hey, I'm Khoi!</span>
+          <div class="body-text">
+            <span>I'm a </span><span class="typing-text purdue-gold"></span><span class="typing-cursor">|</span>
+          </div>
+          <div class="body-text">studying at <span class="purdue-gold">Purdue University (boiler up!)</span></div>
         </div>
-        <a class="button" id="my-work-link">
+        <a class="button magnetic-btn" id="my-work-link">
           <span class="button-text">My experience</span>
-          <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+          <image src="./assets/icons/arrow-right.svg" alt="Right Arrow" class="right-arrow-icon" />
         </a>
       </div>
     </div>
@@ -108,21 +126,20 @@
       <span class="subheader-text">Skills & Tech</span>
       <div class="skills-content">
         <span class="skills-label body-text">Libraries:</span>
-        <span class="skill-pill">Scikit-learn</span>
-        <span class="skill-pill">TensorFlow</span>
-        <span class="skill-pill">PyTorch</span>
-        <span class="skill-pill">Pyspark</span>
-        <span class="skill-pill">Pandas</span>
-        <span class="skill-pill">Numpy</span>
-        <span class="skill-pill">Seaborn</span>
-        <span class="skill-pill">Matplotlib</span>
-        <span class="skills-label body-text">Technologies:</span>
-        <span class="skill-pill">Git</span>
-        <span class="skill-pill">Docker</span>
-        <span class="skill-pill">AWS</span>
-        <span class="skill-pill">Airflow</span>
-        <span class="skill-pill">SQL</span>
-        <span class="skill-pill">Power BI</span>
+        <span class="skill-pill"><img src="./assets/images/scikit-learn.svg" alt="Scikit-learn" class="skill-icon">
+          Scikit-learn</span>
+        <span class="skill-pill"><i class="devicon-tensorflow-original"></i> TensorFlow</span>
+        <span class="skill-pill"><i class="devicon-pytorch-original"></i> PyTorch</span>
+        <span class="skill-pill"><img src="./assets/images/spark.svg" alt="Spark" class="skill-icon"> Pyspark</span>
+        <span class="skill-pill"><i class="devicon-pandas-original"></i> Pandas</span>
+        <span class="skill-pill"><i class="devicon-numpy-original"></i> Numpy</span>
+
+        <span class="skills-label body-text" style="margin-top: 12px;">Technologies:</span>
+        <span class="skill-pill"><i class="devicon-git-plain"></i> Git</span>
+        <span class="skill-pill"><i class="devicon-docker-plain"></i> Docker</span>
+        <span class="skill-pill"><img src="./assets/images/aws-svgrepo-com.svg" alt="AWS" class="skill-icon"> AWS</span>
+        <span class="skill-pill"><img src="./assets/images/sql-database-generic-svgrepo-com.svg" alt="SQL"
+            class="skill-icon"> SQL</span>
       </div>
     </div>
 
@@ -139,32 +156,32 @@
             </div>
           </div> -->
 
-        <div class="project-card">
-          <img src="./assets/images/antsomi_new.jpg" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/antsomi_new.jpg" alt="Antsomi" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">Data Science Intern</div>
             <div class="body-text project-card-text">marketing models, feature engineering</div>
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="./assets/images/ocb-websosc-heroimg555.webp" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/ocb-websosc-heroimg555.webp" alt="OCB" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">Analytics Intern</div>
             <div class="body-text project-card-text">etl, dashboards</div>
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="./assets/images/vrai.png" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/vrai.png" alt="VRAI" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">NLP Researcher</div>
             <div class="body-text project-card-text">academic research, topic modeling</div>
           </div>
         </div>
 
-        <div class="project-card">
-          <img src="./assets/images/dp.jpg" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/dp.jpg" alt="DP" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">Data Science Intern</div>
             <div class="body-text project-card-text">data transformation, statistical testings</div>
@@ -178,8 +195,8 @@
       <span class="subheader-text">Projects & Hackathon</span>
 
       <div class="projects-container">
-        <div class="project-card">
-          <img src="./assets/images/microsoft.png" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/microsoft.png" alt="Microsoft Hackathon" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">1st Runner Up</div>
             <div class="body-text project-card-text">Microsoft VN GenAI Hackathon</div>
@@ -191,8 +208,8 @@
           </a>
         </div>
 
-        <div class="project-card">
-          <img src="./assets/images/elite-edge.png" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/elite-edge.png" alt="Elite Edge Basketball" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">NCAA Basketball Analytics</div>
             <div class="body-text project-card-text">the joy from coding + the love of basketball</div>
@@ -211,8 +228,8 @@
         </div>
 
         <!-- <div class="projects-container"> -->
-        <div class="project-card">
-          <img src="./assets/images/playground.png" class="project-image">
+        <div class="project-card magnetic-card">
+          <img src="./assets/images/playground.png" alt="Data Science Playground" class="project-image">
           <div class="project-card-text-container">
             <div class="subheader-text project-title">Data Science Playground</div>
             <div class="body-text project-card-text">building blocks for understanding data science</div>

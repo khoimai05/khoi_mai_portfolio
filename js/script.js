@@ -1,6 +1,6 @@
 if (document.getElementById('my-work-link')) {
   document.getElementById('my-work-link').addEventListener('click', () => {
-    document.getElementById('work-experience-section').scrollIntoView({behavior: "smooth"})
+    document.getElementById('work-experience-section').scrollIntoView({ behavior: "smooth" })
   })
 }
 
@@ -12,7 +12,7 @@ const observerOptions = {
   rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver(function (entries) {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       const cards = entry.target.querySelectorAll('.project-card');
@@ -139,6 +139,8 @@ window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
+
 // Scroll Reveal for Sections
 const aboutSection = document.getElementById('about-section');
 const skillsSection = document.getElementById('skills-section');
@@ -178,4 +180,113 @@ window.addEventListener('scroll', () => {
   const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
   const scrolled = (window.scrollY / windowHeight) * 100;
   progressBar.style.width = scrolled + '%';
+});
+
+// --- New Visual Polish Interactions ---
+
+// Custom Cursor
+const cursorDot = document.getElementById('cursor-dot');
+const cursorOutline = document.getElementById('cursor-outline');
+
+if (cursorDot && cursorOutline) {
+  window.addEventListener('mousemove', (e) => {
+    const posX = e.clientX;
+    const posY = e.clientY;
+
+    cursorDot.style.left = `${posX}px`;
+    cursorDot.style.top = `${posY}px`;
+
+    cursorOutline.animate({
+      left: `${posX}px`,
+      top: `${posY}px`
+    }, { duration: 500, fill: "forwards" });
+  });
+
+  // Add hover state for the viewfinder rotation
+  const interactables = document.querySelectorAll('a, button, .magnetic-btn, .magnetic-card, .project-card');
+
+  interactables.forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      document.body.classList.add('hovering');
+    });
+    el.addEventListener('mouseleave', () => {
+      document.body.classList.remove('hovering');
+    });
+  });
+}
+
+// Smart Navbar
+let lastScrollY = window.scrollY;
+const navbar = document.querySelector('.navbar');
+
+if (navbar) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 80) {
+      navbar.classList.add('nav-hidden');
+    } else {
+      navbar.classList.remove('nav-hidden');
+    }
+    lastScrollY = window.scrollY;
+  });
+}
+
+// Typing Animation
+const typingTexts = ["CS and DS Student", "Boilermaker", "Max Verstappen Fan"]
+let typingCount = 0;
+let typingIndex = 0;
+let currentTypingText = "";
+let currentLetter = "";
+const typingElement = document.querySelector('.typing-text');
+let isDeleting = false;
+
+function typeEffect() {
+  if (!typingElement) return;
+
+  if (typingCount === typingTexts.length) {
+    typingCount = 0;
+  }
+
+  currentTypingText = typingTexts[typingCount];
+
+  if (isDeleting) {
+    currentLetter = currentTypingText.slice(0, --typingIndex);
+  } else {
+    currentLetter = currentTypingText.slice(0, ++typingIndex);
+  }
+
+  typingElement.textContent = currentLetter;
+
+  let typeSpeed = isDeleting ? 40 : 100;
+
+  if (!isDeleting && currentLetter.length === currentTypingText.length) {
+    typeSpeed = 2000; // Pause at end of word
+    isDeleting = true;
+  } else if (isDeleting && currentLetter.length === 0) {
+    isDeleting = false;
+    typingCount++;
+    typeSpeed = 500; // Pause before new word
+  }
+
+  setTimeout(typeEffect, typeSpeed);
+}
+
+if (typingElement) {
+  typeEffect();
+}
+
+// Magnetic Buttons
+const magneticBtns = document.querySelectorAll('.magnetic-btn');
+
+magneticBtns.forEach(btn => {
+  btn.addEventListener('mousemove', (e) => {
+    const position = btn.getBoundingClientRect();
+    const x = e.clientX - position.left - position.width / 2;
+    const y = e.clientY - position.top - position.height / 2;
+
+    btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px)`;
+  });
+
+  btn.addEventListener('mouseout', () => {
+    btn.style.transform = 'translate(0px, 0px)';
+  });
 });

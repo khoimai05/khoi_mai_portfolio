@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
   <meta charset="utf-8">
   <link rel="icon" href="./assets/images/uni.jpg" />
   <title>My Journey | Khoi Mai</title>
@@ -9,7 +10,9 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Merriweather:wght@300;400;700;900&display=swap"
+    rel="stylesheet">
 
   <link rel="stylesheet" href="./css/layout.css">
   <link rel="stylesheet" href="./css/typography.css">
@@ -17,70 +20,101 @@
 
   <script defer src="./js/script.js"></script>
 </head>
-  <body>
-    <div class="navbar">
-      <a class="nav-title-link" href="./index.html">
-        <span class="nav-title">Khoi Mai</span>
-      </a>
-      <div class="nav-right">
-        <div class="nav-links">
-          <a href="./blog.html">Blog</a>
-        </div>
-        <a class="button" href="./assets/images/Khoi Mai Resume.pdf" target="_blank">
-          <span class="button-text">Resume</span>
-        </a>
+
+<body>
+  <!-- Custom Cursor -->
+  <div class="cursor-dot" id="cursor-dot"></div>
+  <div class="cursor-outline-wrapper" id="cursor-outline">
+    <div class="cursor-outline"></div>
+  </div>
+
+  <div class="navbar">
+    <a class="nav-title-link" href="./index.html">
+      <span class="nav-title">Khoi Mai</span>
+    </a>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="./blog.html">Blog</a>
       </div>
-    </div>
-
-    <div id="main-content">
-
-      <div class="page-hero">
-        <span class="main-title">My Journey</span>
-        <div class="body-text">Where it all started</div>
-      </div>
-
-      <div class="long-form-content">
-
-        <span class="subheader-text">The Beginning</span>
-        <div class="body-text">I grew up fascinated by numbers and patterns. Whether it was tracking basketball stats, analyzing game strategies, or just trying to understand why certain teams won and others didn't, I was always drawn to the stories hidden in data. That curiosity eventually led me to Purdue University, where I decided to double down and pursue both Computer Science and Data Science.</div>
-
-        <span class="subheader-text">Finding My Path at Purdue</span>
-        <div class="body-text">Purdue was where things clicked. The coursework gave me a strong foundation in algorithms, statistics, and machine learning, but it was the hands-on projects and internships that really shaped how I think about data. I learned that the best analysis isn't just technically sound -- it tells a story that drives decisions.</div>
-
-        <div class="body-text">Outside the classroom, I immersed myself in the data science community. I attended hackathons, collaborated on research, and spent countless hours building side projects that combined my technical skills with my passion for sports.</div>
-
-        <span class="subheader-text">Industry Experience</span>
-        <div class="body-text">My first real taste of industry came as an Analytics Engineer Intern at OCB, where I built ETL pipelines and dashboards that teams actually relied on. It taught me that data work isn't just about models -- it's about building systems people trust.</div>
-
-        <div class="body-text">At Antsomi, I dove deeper into the data science side as a Data Science Intern. I worked on marketing models and feature engineering, learning how to translate business questions into predictive systems. Every project reinforced the same lesson: the impact comes from understanding the problem, not just the tools.</div>
-
-        <div class="body-text">I also had the opportunity to work as an NLP Researcher, exploring topic modeling and academic text analysis. It was a different flavor of data science -- more research-oriented, more patience required -- but it sharpened my ability to work with unstructured data and think critically about methodology.</div>
-
-        <span class="subheader-text">Sports and Data</span>
-        <div class="body-text">If there's one thread that runs through everything I do, it's sports. I've always believed that sports analytics is one of the most exciting applications of data science -- it combines rigorous statistical thinking with a domain I genuinely love. That belief led me to build NCAA Basketball Analytics (EliteEdge), a project that analyzes a decade of college basketball data. It's the project I'm most proud of because it sits right at the intersection of my skills and my passions.</div>
-
-        <span class="subheader-text">What's Next</span>
-        <div class="body-text">I'm currently looking for data science opportunities where I can keep growing -- ideally at the intersection of analytics, machine learning, and domains I care about. I want to work on problems where data drives real decisions, whether that's in sports, technology, or any field where curiosity and rigor make a difference.</div>
-
-        <div class="body-text">If any of this resonates with you, I'd love to connect.</div>
-
-      </div>
-
-    </div>
-
-    <div id="footer">
-      <a class="icon-link" target="_blank" href="https://www.linkedin.com/in/khoi-maix/">
-        <img src="./assets/icons/li.svg" class="footer-icon"/>
-      </a>
-      <a class="icon-link" href="mailto:maixuankhoi05@gmail.com">
-        <img src="./assets/icons/mail.svg" class="footer-icon"/>
-      </a>
-      <a class="icon-link" target="_blank" href="https://medium.com/@maixuankhoi05">
-        <img src="./assets/icons/Medium.svg" class="footer-icon"/>
-      </a>
-      <a class="icon-link" target="_blank" href="https://github.com/khoimai05">
-        <img src="./assets/icons/github.svg" class="footer-icon"/>
+      <a class="button" href="./assets/images/Khoi Mai Resume.pdf" target="_blank">
+        <span class="button-text">Resume</span>
       </a>
     </div>
-  </body>
+  </div>
+
+  <div id="main-content">
+
+    <div class="page-hero">
+      <span class="main-title">My Journey</span>
+      <div class="body-text">Where it all started</div>
+    </div>
+
+    <div class="long-form-content">
+
+      <span class="subheader-text">The Beginning</span>
+      <div class="body-text">I grew up fascinated by numbers and patterns. Whether it was tracking basketball stats,
+        analyzing game strategies, or just trying to understand why certain teams won and others didn't, I was always
+        drawn to the stories hidden in data. That curiosity eventually led me to Purdue University, where I decided to
+        double down and pursue both Computer Science and Data Science.</div>
+
+      <span class="subheader-text">Finding My Path at Purdue</span>
+      <div class="body-text">Purdue was where things clicked. The coursework gave me a strong foundation in algorithms,
+        statistics, and machine learning, but it was the hands-on projects and internships that really shaped how I
+        think about data. I learned that the best analysis isn't just technically sound -- it tells a story that drives
+        decisions.</div>
+
+      <div class="body-text">Outside the classroom, I immersed myself in the data science community. I attended
+        hackathons, collaborated on research, and spent countless hours building side projects that combined my
+        technical skills with my passion for sports.</div>
+
+      <span class="subheader-text">Industry Experience</span>
+      <div class="body-text">My first real taste of industry came as an Analytics Engineer Intern at OCB, where I built
+        ETL pipelines and dashboards that teams actually relied on. It taught me that data work isn't just about models
+        -- it's about building systems people trust.</div>
+
+      <div class="body-text">At Antsomi, I dove deeper into the data science side as a Data Science Intern. I worked on
+        marketing models and feature engineering, learning how to translate business questions into predictive systems.
+        Every project reinforced the same lesson: the impact comes from understanding the problem, not just the tools.
+      </div>
+
+      <div class="body-text">I also had the opportunity to work as an NLP Researcher, exploring topic modeling and
+        academic text analysis. It was a different flavor of data science -- more research-oriented, more patience
+        required -- but it sharpened my ability to work with unstructured data and think critically about methodology.
+      </div>
+
+      <span class="subheader-text">Sports and Data</span>
+      <div class="body-text">If there's one thread that runs through everything I do, it's sports. I've always believed
+        that sports analytics is one of the most exciting applications of data science -- it combines rigorous
+        statistical thinking with a domain I genuinely love. That belief led me to build NCAA Basketball Analytics
+        (EliteEdge), a project that analyzes a decade of college basketball data. It's the project I'm most proud of
+        because it sits right at the intersection of my skills and my passions.</div>
+
+      <span class="subheader-text">What's Next</span>
+      <div class="body-text">I'm currently looking for data science opportunities where I can keep growing -- ideally at
+        the intersection of analytics, machine learning, and domains I care about. I want to work on problems where data
+        drives real decisions, whether that's in sports, technology, or any field where curiosity and rigor make a
+        difference.</div>
+
+      <div class="body-text">If any of this resonates with you, I'd love to connect.</div>
+
+    </div>
+
+  </div>
+
+  <div id="footer">
+    <a class="icon-link" target="_blank" href="https://www.linkedin.com/in/khoi-maix/">
+      <img src="./assets/icons/li.svg" class="footer-icon" />
+    </a>
+    <a class="icon-link" href="mailto:maixuankhoi05@gmail.com">
+      <img src="./assets/icons/mail.svg" class="footer-icon" />
+    </a>
+    <a class="icon-link" target="_blank" href="https://medium.com/@maixuankhoi05">
+      <img src="./assets/icons/Medium.svg" class="footer-icon" />
+    </a>
+    <a class="icon-link" target="_blank" href="https://github.com/khoimai05">
+      <img src="./assets/icons/github.svg" class="footer-icon" />
+    </a>
+  </div>
+</body>
+
 </html>

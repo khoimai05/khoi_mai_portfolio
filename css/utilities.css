@@ -163,14 +163,27 @@ body {
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Constellation Background Canvas */
@@ -330,4 +343,156 @@ a.icon-link {
   z-index: 9999;
   width: 0%;
   transition: width 0.1s ease;
+}
+
+/* --- New Visual Polish Utilities --- */
+
+/* Custom Cursor */
+body {
+  cursor: none;
+  /* Hide default cursor */
+}
+
+a,
+button,
+.magnetic-btn,
+.magnetic-card {
+  cursor: none;
+  /* Hide default pointer over interactables */
+}
+
+.cursor-dot {
+  width: 4px;
+  height: 4px;
+  background-color: #CFB991;
+}
+
+.cursor-outline {
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(207, 185, 145, 0.7);
+  border-radius: 0;
+  /* Square for the viewfinder aesthetic */
+  transition: width 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+    height 0.3s cubic-bezier(0.165, 0.84, 0.44, 1),
+    transform 0.15s ease-out,
+    border-color 0.3s ease;
+  position: relative;
+}
+
+/* Corner brackets for the viewfinder */
+.cursor-outline::before,
+.cursor-outline::after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: #CFB991;
+  border-style: solid;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.cursor-outline::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+
+.cursor-outline::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+.cursor-dot,
+.cursor-outline-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+  z-index: 10000;
+  pointer-events: none;
+}
+
+.cursor-outline-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The following selectors are likely intended to be handled by JS adding a class to body */
+/* a:hover ~ document .cursor-outline-wrapper .cursor-outline,
+.button:hover ~ document .cursor-outline-wrapper .cursor-outline,
+.magnetic-btn:hover ~ document .cursor-outline-wrapper .cursor-outline,
+.magnetic-card:hover ~ document .cursor-outline-wrapper .cursor-outline {
+  width: 48px;
+  height: 48px;
+  transform: rotate(45deg);
+  border-color: transparent;
+} */
+
+/* Ensure the wrapper rotation works via JS class toggle as pure CSS sibling won't reach it easily */
+body.hovering .cursor-outline {
+  width: 48px;
+  height: 48px;
+  transform: rotate(45deg);
+  border-color: rgba(207, 185, 145, 0.1);
+}
+
+body.hovering .cursor-outline::before,
+body.hovering .cursor-outline::after {
+  border-color: #CFB991;
+}
+
+body.hovering .cursor-dot {
+  opacity: 0;
+  /* Fade out dot on hover */
+}
+
+/* Smart Navbar Hidden State */
+.navbar {
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+}
+
+.navbar.nav-hidden {
+  transform: translateY(-100%);
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(90deg, #ffffff, #CFB991);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Blob / Tilt Image */
+.blob-tilt {
+  /* Base properties in layout.css are kept, here we add transition and enhanced shadow */
+  transition: transform 0.1s ease-out, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.blob-tilt:hover {
+  box-shadow: 0 20px 40px rgba(207, 185, 145, 0.25);
+}
+
+/* Typing Cursor Animation */
+.typing-cursor {
+  display: inline-block;
+  color: #CFB991;
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
 }
