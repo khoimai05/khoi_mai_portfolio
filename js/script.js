@@ -210,6 +210,7 @@ window.addEventListener('resize', () => {
 // Scroll Reveal for Sections
 const aboutSection = document.getElementById('about-section');
 const skillsSection = document.getElementById('skills-section');
+const sqlSection = document.getElementById('sql-section');
 const workExperienceSection = document.getElementById('work-experience-section');
 const projectsHackathonSection = document.getElementById('projects-hackathon-section');
 
@@ -227,6 +228,10 @@ if (aboutSection) {
 
 if (skillsSection) {
   sectionObserver.observe(skillsSection);
+}
+
+if (sqlSection) {
+  sectionObserver.observe(sqlSection);
 }
 
 if (workExperienceSection) {

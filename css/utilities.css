@@ -365,6 +365,7 @@ a.icon-link {
   transform: translateX(0);
 }
 
+#sql-section,
 #work-experience-section,
 #projects-hackathon-section {
   opacity: 0;
@@ -372,6 +373,7 @@ a.icon-link {
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
+#sql-section.visible,
 #work-experience-section.visible,
 #projects-hackathon-section.visible {
   opacity: 1;
@@ -550,4 +552,26 @@ a.icon-link {
 
 .blob-tilt:hover {
   box-shadow: 0 20px 40px rgba(207, 185, 145, 0.25);
+}
+
+/* Hero Tagline */
+.hero-tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  animation: fadeInUp 1.2s cubic-bezier(0.25, 0.8, 0.25, 1) 0.3s both;
+}
+
+/* Query Me hint */
+.sql-section-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: rgba(207, 185, 145, 0.55);
+  margin-top: -4px;
+  font-style: italic;
 }
