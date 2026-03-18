@@ -486,6 +486,107 @@ body {
 }
 
 
+/* SQL Terminal Section */
+
+#sql-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+#sql-terminal {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  border-radius: 12px;
+  padding: 24px;
+  font-family: Menlo, Consolas, 'Courier New', monospace;
+  max-width: 860px;
+}
+
+.sql-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sql-chip {
+  font-family: Menlo, Consolas, 'Courier New', monospace;
+  font-size: 12px;
+  color: rgba(207, 185, 145, 0.8);
+  background: rgba(207, 185, 145, 0.07);
+  border: 1px solid rgba(207, 185, 145, 0.2);
+  border-radius: 4px;
+  padding: 4px 10px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.sql-chip:hover,
+.sql-chip-active {
+  background: rgba(207, 185, 145, 0.18);
+  border-color: rgba(207, 185, 145, 0.5);
+  color: #CFB991;
+}
+
+.sql-output {
+  min-height: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  padding-top: 12px;
+  overflow-x: auto;
+}
+
+.sql-echo {
+  font-size: 13px;
+  color: rgba(207, 185, 145, 0.5);
+  margin-bottom: 10px;
+}
+
+.sql-result-table {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.sql-rowcount {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(207, 185, 145, 0.5);
+}
+
+.sql-error {
+  font-size: 13px;
+  color: rgba(255, 120, 120, 0.8);
+}
+
+.sql-empty {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.25);
+}
+
+@media only screen and (max-width: 600px) {
+  #sql-terminal {
+    padding: 16px;
+  }
+
+  .sql-chip {
+    font-size: 11px;
+  }
+
+  .sql-result-table {
+    font-size: 11px;
+  }
+}
+
+
 /* Extra Extra large devices (large laptops and desktops, 1200px and below) */
 @media only screen and (max-width: 1600px) {
   #main-content {

@@ -299,6 +299,175 @@ if (navbar) {
   });
 }
 
+// ─── SQL Terminal ────────────────────────────────────────────────────────────
+
+const SQL_DB = {
+  experience: [
+    {
+      company: 'Discovery Park',
+      role: 'Data Science Researcher',
+      period: 'Dec 2025 – Now',
+      location: 'West Lafayette, IN',
+      highlight: 'Regression models on 200K+ EV permits & 1M+ POI records across 150+ neighborhoods'
+    },
+    {
+      company: 'Antsomi',
+      role: 'Data Scientist Intern',
+      period: 'Jun 2025 – Aug 2025',
+      location: 'Ho Chi Minh City, VN',
+      highlight: '89% accuracy model identifying 25K+ high-value prospects from 300K+ users monthly'
+    },
+    {
+      company: 'VRAI Lab',
+      role: 'NLP Research Assistant',
+      period: 'Sep 2024 – Now',
+      location: 'West Lafayette, IN',
+      highlight: 'Pipelines ingesting 10K+ papers at 450+ papers/hour; LDA topic modeling for Purdue faculty'
+    },
+    {
+      company: 'OCB',
+      role: 'Analytics Engineer Intern',
+      period: 'May 2024 – Aug 2024',
+      location: 'Ho Chi Minh City, VN',
+      highlight: '30% faster SQL queries via 3NF optimization; Power BI dashboards across 30+ provinces'
+    },
+  ],
+  skills: [
+    { name: 'Python',      category: 'language' },
+    { name: 'SQL',         category: 'language' },
+    { name: 'R',           category: 'language' },
+    { name: 'Scikit-learn',category: 'library'  },
+    { name: 'XGBoost',     category: 'library'  },
+    { name: 'TensorFlow',  category: 'library'  },
+    { name: 'PyTorch',     category: 'library'  },
+    { name: 'PySpark',     category: 'library'  },
+    { name: 'Pandas',      category: 'library'  },
+    { name: 'NumPy',       category: 'library'  },
+    { name: 'Git',         category: 'technology' },
+    { name: 'Docker',      category: 'technology' },
+    { name: 'AWS',         category: 'technology' },
+    { name: 'Power BI',    category: 'technology' },
+    { name: 'dbt',         category: 'technology' },
+  ],
+  projects: [
+    { name: 'Elite Edge',          type: 'analytics platform', status: 'Running',        link: 'https://www.eliteedge.one/' },
+    { name: 'Microsoft Hackathon', type: 'hackathon',          status: '2nd / 10 teams', link: 'https://www.linkedin.com/in/khoi-maix/' },
+    { name: 'DS Playground',       type: 'education',          status: 'live',           link: 'https://khoimai05.github.io/Data-Science-Playground/' },
+  ],
+};
+
+function sqlParse(raw) {
+  const q = raw.trim().replace(/\s+/g, ' ');
+
+  // Supported: SELECT [DISTINCT] cols|COUNT(*) FROM table [WHERE col = 'val'] [ORDER BY col [ASC|DESC]] [LIMIT n]
+  const m = q.match(
+    /^SELECT\s+(DISTINCT\s+)?(.+?)\s+FROM\s+(\w+)(?:\s+WHERE\s+(\w+)\s*=\s*'([^']*)')?(?:\s+ORDER\s+BY\s+(\w+)(?:\s+(ASC|DESC))?)?(?:\s+LIMIT\s+(\d+))?$/i
+  );
+  if (!m) return { error: `-- syntax error. Supported: SELECT [DISTINCT] cols FROM table [WHERE col = 'val'] [ORDER BY col [ASC|DESC]] [LIMIT n]` };
+
+  const [, distinctFlag, colsRaw, table, whereCol, whereVal, orderCol, orderDir, limitStr] = m;
+  const tableName = table.toLowerCase();
+  if (!SQL_DB[tableName]) return { error: `-- unknown table "${table}". Available: ${Object.keys(SQL_DB).join(', ')}` };
+
+  const allCols = Object.keys(SQL_DB[tableName][0]);
+
+  // COUNT(*)
+  const isCount = /^COUNT\s*\(\s*\*\s*\)$/i.test(colsRaw.trim());
+
+  let rows = [...SQL_DB[tableName]];
+
+  // WHERE
+  if (whereCol) {
+    const col = whereCol.toLowerCase();
+    if (!allCols.includes(col)) return { error: `-- unknown column "${whereCol}". Available: ${allCols.join(', ')}` };
+    rows = rows.filter(r => {
+      const v = r[col];
+      return v !== undefined && String(v).toLowerCase().includes(whereVal.toLowerCase());
+    });
+  }
+
+  // ORDER BY
+  if (orderCol) {
+    const col = orderCol.toLowerCase();
+    if (!allCols.includes(col)) return { error: `-- unknown ORDER BY column "${orderCol}". Available: ${allCols.join(', ')}` };
+    const dir = (orderDir || 'ASC').toUpperCase();
+    rows.sort((a, b) => {
+      const av = String(a[col] ?? '');
+      const bv = String(b[col] ?? '');
+      return dir === 'DESC' ? bv.localeCompare(av) : av.localeCompare(bv);
+    });
+  }
+
+  // LIMIT
+  if (limitStr) {
+    rows = rows.slice(0, parseInt(limitStr, 10));
+  }
+
+  // COUNT(*) shortcut
+  if (isCount) {
+    return { cols: ['count(*)'], rows: [{ 'count(*)': rows.length }] };
+  }
+
+  const cols = colsRaw.trim() === '*' ? allCols : colsRaw.split(',').map(c => c.trim().toLowerCase());
+  const invalidCols = cols.filter(c => !allCols.includes(c));
+  if (invalidCols.length) return { error: `-- unknown column(s): ${invalidCols.join(', ')}. Available: ${allCols.join(', ')}` };
+
+  // DISTINCT
+  if (distinctFlag) {
+    const seen = new Set();
+    rows = rows.filter(r => {
+      const key = cols.map(c => r[c]).join('||');
+      if (seen.has(key)) return false;
+      seen.add(key);
+      return true;
+    });
+  }
+
+  return { cols, rows };
+}
+
+function sqlRender(result) {
+  if (result.error) return `<div class="sql-error">${result.error}</div>`;
+  if (result.rows.length === 0) return `<div class="sql-empty">-- 0 rows returned</div>`;
+
+  const { cols, rows } = result;
+  const widths = cols.map(c => Math.max(c.length, ...rows.map(r => String(r[c] ?? '').length)));
+
+  const pad = (s, w) => String(s ?? '').padEnd(w);
+  const divider = widths.map(w => '─'.repeat(w + 2)).join('┼');
+  const header  = cols.map((c, i) => ` ${pad(c, widths[i])} `).join('│');
+  const dataRows = rows.map(r => cols.map((c, i) => ` ${pad(r[c], widths[i])} `).join('│'));
+
+  const lines = [header, divider, ...dataRows];
+  const tableText = lines.join('\n');
+
+  return `<pre class="sql-result-table">${tableText}</pre><div class="sql-rowcount">${rows.length} row${rows.length !== 1 ? 's' : ''}</div>`;
+}
+
+function sqlInit() {
+  const terminal = document.getElementById('sql-terminal');
+  if (!terminal) return;
+
+  const output = terminal.querySelector('.sql-output');
+  const chips  = terminal.querySelectorAll('.sql-chip');
+
+  function run(query) {
+    if (!query.trim()) return;
+    chips.forEach(c => c.classList.toggle('sql-chip-active', c.dataset.query === query));
+    const result = sqlParse(query);
+    const html   = sqlRender(result);
+    output.innerHTML = `<div class="sql-echo">› ${query}</div>${html}`;
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => run(chip.dataset.query));
+  });
+}
+
+document.addEventListener('DOMContentLoaded', sqlInit);
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 // Portrait Tilt Effect
 const blobTilt = document.querySelector('.blob-tilt');
 
