@@ -1,0 +1,321 @@
+/* =============================================
+   Light Mode Overrides
+   Applied when <body class="light-mode">
+   ============================================= */
+
+/* Body background + text */
+body.light-mode {
+  background: linear-gradient(-45deg, #f0ece4, #faf7f2, #ece5d8, #f5f0e8);
+  background-size: 400% 400%;
+  animation: gradientShift 30s ease infinite;
+  color: #1a1a1a;
+}
+
+/* Scrollbar */
+body.light-mode ::-webkit-scrollbar-track {
+  background: #ede8e0;
+}
+body.light-mode ::-webkit-scrollbar-thumb {
+  background: rgba(207, 185, 145, 0.5);
+  border: 2px solid #ede8e0;
+}
+body.light-mode ::-webkit-scrollbar-thumb:hover {
+  background: rgba(207, 185, 145, 0.8);
+}
+
+/* Canvas – invert the dark grid to look warm on light bg */
+body.light-mode #constellation-canvas {
+  filter: invert(1) hue-rotate(180deg) opacity(0.35);
+}
+
+/* Navbar */
+body.light-mode .navbar {
+  background-color: rgba(240, 234, 220, 0.75) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .nav-title,
+body.light-mode .nav-title-link {
+  color: #1a1a1a;
+}
+
+body.light-mode .nav-links a {
+  color: #1a1a1a;
+}
+
+body.light-mode .nav-links a:hover {
+  color: #9a7c40;
+  border-bottom-color: #9a7c40;
+}
+
+/* Hero title gradient */
+body.light-mode .text-gradient {
+  background: linear-gradient(90deg, #1a1a1a, #9a7c40, #1a1a1a);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Project Cards */
+body.light-mode .project-card {
+  background: rgba(255, 252, 246, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .project-card.visible:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15), 0 0 20px rgba(154, 124, 64, 0.1);
+  border-color: rgba(154, 124, 64, 0.4);
+}
+
+/* Buttons */
+body.light-mode a.button {
+  background: rgba(250, 247, 242, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode a.button:hover {
+  background: rgba(154, 124, 64, 0.12);
+  border-color: rgba(154, 124, 64, 0.5);
+  box-shadow: 0 8px 25px rgba(154, 124, 64, 0.2);
+}
+
+body.light-mode a.button .button-text {
+  color: #1a1a1a;
+}
+
+body.light-mode a.button:hover .button-text {
+  color: #9a7c40;
+}
+
+body.light-mode a.button .right-arrow-icon {
+  filter: invert(0);
+}
+
+body.light-mode a.button:hover .right-arrow-icon {
+  filter: brightness(0) saturate(100%) invert(50%) sepia(40%) saturate(500%) hue-rotate(10deg) brightness(85%) contrast(90%);
+}
+
+/* Skill Pills */
+body.light-mode .skill-pill {
+  background: rgba(154, 124, 64, 0.08);
+  border: 1px solid rgba(154, 124, 64, 0.4);
+  color: #7a5c20;
+}
+
+body.light-mode .skill-pill:hover {
+  background: rgba(154, 124, 64, 0.18);
+}
+
+body.light-mode .skills-label {
+  color: rgba(0, 0, 0, 0.65);
+}
+
+/* SQL Terminal */
+body.light-mode #sql-terminal {
+  background: rgba(255, 251, 244, 0.85);
+  border: 1px solid rgba(154, 124, 64, 0.25);
+  border-top: 2px solid rgba(154, 124, 64, 0.5);
+  box-shadow: 0 0 40px rgba(154, 124, 64, 0.06);
+}
+
+body.light-mode .sql-chip {
+  color: rgba(100, 75, 20, 0.85);
+  background: rgba(154, 124, 64, 0.08);
+  border: 1px solid rgba(154, 124, 64, 0.3);
+}
+
+body.light-mode .sql-chip:hover {
+  background: rgba(154, 124, 64, 0.15);
+  border-color: rgba(154, 124, 64, 0.55);
+  color: #7a5c20;
+  box-shadow: 0 0 12px rgba(154, 124, 64, 0.15);
+}
+
+body.light-mode .sql-chip-active {
+  background: rgba(154, 124, 64, 0.2);
+  border-color: #9a7c40;
+  color: #7a5c20;
+}
+
+body.light-mode .sql-output {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .sql-result-table {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+body.light-mode .sql-echo {
+  color: rgba(154, 124, 64, 0.7);
+}
+
+body.light-mode .sql-rowcount {
+  color: rgba(154, 124, 64, 0.6);
+}
+
+body.light-mode .sql-empty {
+  color: rgba(0, 0, 0, 0.3);
+}
+
+body.light-mode .sql-section-hint {
+  color: rgba(154, 124, 64, 0.6);
+}
+
+/* Blog Cards */
+body.light-mode .blog-card {
+  background: rgba(255, 252, 246, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #1a1a1a;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .blog-card:hover {
+  box-shadow: 0 10px 30px rgba(154, 124, 64, 0.2);
+  border-color: rgba(154, 124, 64, 0.4);
+}
+
+body.light-mode .blog-card-date,
+body.light-mode .blog-post-date,
+body.light-mode .blog-card-readmore {
+  color: #9a7c40;
+}
+
+body.light-mode .blog-back-link {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .blog-back-link:hover {
+  color: #1a1a1a;
+}
+
+/* GitHub section */
+body.light-mode .github-section-hint,
+body.light-mode .github-graph-status {
+  color: rgba(0, 0, 0, 0.55);
+}
+
+body.light-mode .github-graph-card {
+  background: rgba(255, 252, 246, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  scrollbar-color: rgba(0, 0, 0, 0.15) transparent;
+}
+
+body.light-mode .github-graph-card::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+body.light-mode .github-graph-label {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+body.light-mode .github-level-0 {
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Footer icons */
+body.light-mode a.icon-link {
+  filter: invert(0);
+}
+
+/* Long-form prose */
+body.light-mode .long-form-content pre {
+  background: rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .long-form-content code {
+  color: #7a5c20;
+}
+
+body.light-mode .nb-cell.nb-output .nb-output-content {
+  background: rgba(0, 0, 0, 0.03);
+  border-left: 3px solid rgba(0, 0, 0, 0.1);
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Progress bar */
+body.light-mode #progress-bar {
+  background: linear-gradient(90deg, #9a7c40, #cfb991);
+}
+
+/* Custom cursor in light mode */
+body.light-mode .cursor-dot {
+  background-color: #7a5c20;
+}
+
+body.light-mode .cursor-outline {
+  border-color: rgba(122, 92, 32, 0.7);
+}
+
+body.light-mode .cursor-outline::before,
+body.light-mode .cursor-outline::after {
+  border-color: #7a5c20;
+}
+
+body.light-mode.hovering .cursor-outline {
+  border-color: rgba(122, 92, 32, 0.1);
+}
+
+body.light-mode.hovering .cursor-outline::before,
+body.light-mode.hovering .cursor-outline::after {
+  border-color: #7a5c20;
+}
+
+/* Purdue gold – darken slightly for legibility on light bg */
+body.light-mode .purdue-gold {
+  color: #9a7c40;
+}
+
+/* Hero tagline */
+body.light-mode .hero-tagline {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+/* Portfolio header image */
+body.light-mode .portfolio-header-image {
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Theme toggle button itself */
+#theme-toggle {
+  background: none;
+  border: none;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease, opacity 0.2s ease;
+  opacity: 0.85;
+  line-height: 1;
+}
+
+#theme-toggle:hover {
+  transform: rotate(20deg) scale(1.15);
+  opacity: 1;
+  cursor: none;
+}
+
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+  display: block;
+  transition: opacity 0.2s ease;
+}
+
+/* Sun icon: visible in dark mode (toggle to go light) */
+#theme-toggle .icon-sun {
+  color: #CFB991;
+}
+
+/* Moon icon: visible in light mode (toggle to go dark) */
+#theme-toggle .icon-moon {
+  color: #7a5c20;
+}

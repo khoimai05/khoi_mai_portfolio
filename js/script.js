@@ -1,3 +1,39 @@
+// ─── Theme Toggle ─────────────────────────────────────────────────────────────
+
+(function () {
+    const STORAGE_KEY = 'theme';
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    function applyTheme(isLight) {
+        document.body.classList.toggle('light-mode', isLight);
+        const sun = document.querySelector('#theme-toggle .icon-sun');
+        const moon = document.querySelector('#theme-toggle .icon-moon');
+        if (sun) sun.style.display = isLight ? 'none' : 'block';
+        if (moon) moon.style.display = isLight ? 'block' : 'none';
+    }
+
+    // Apply immediately on load (before paint) to avoid flicker
+    if (saved === 'light') {
+        document.body.classList.add('light-mode');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const btn = document.getElementById('theme-toggle');
+        if (!btn) return;
+
+        // Sync icons once DOM is ready
+        applyTheme(document.body.classList.contains('light-mode'));
+
+        btn.addEventListener('click', () => {
+            const willBeLight = !document.body.classList.contains('light-mode');
+            applyTheme(willBeLight);
+            localStorage.setItem(STORAGE_KEY, willBeLight ? 'light' : 'dark');
+        });
+    });
+})();
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 if (document.getElementById('my-work-link')) {
     document.getElementById('my-work-link').addEventListener('click', () => {
         document.getElementById('work-experience-section').scrollIntoView({ behavior: "smooth" })
