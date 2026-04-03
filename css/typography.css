@@ -1,15 +1,15 @@
 body {
-  font-family: 'Merriweather', Georgia, serif;
+  font-family: 'Inter', sans-serif;
 }
 
 .nav-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-weight: 700;
   font-size: 24px;
 }
 
 .button-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-size: 14px;
   font-weight: 700;
 }
@@ -20,7 +20,7 @@ body {
 }
 
 .main-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-size: 72px;
   font-weight: 700;
   line-height: 1.05;
@@ -28,7 +28,7 @@ body {
 }
 
 .subheader-text {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-size: 24px;
   font-weight: 700;
 }
@@ -48,7 +48,7 @@ body {
 }
 
 .project-title {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

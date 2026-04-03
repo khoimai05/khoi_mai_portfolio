@@ -81,7 +81,7 @@ a.icon-link:hover {
 }
 
 .nav-links a {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-size: 16px;
   font-weight: 700;
   color: #ffffff;
@@ -556,7 +556,7 @@ a.icon-link {
 
 /* Hero Tagline */
 .hero-tagline {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-size: 15px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.45);
@@ -568,7 +568,7 @@ a.icon-link {
 
 /* Query Me hint */
 .sql-section-hint {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Fira Code', monospace;
   font-size: 15px;
   font-weight: 400;
   color: rgba(207, 185, 145, 0.55);
