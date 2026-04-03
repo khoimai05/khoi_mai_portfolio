@@ -34,6 +34,73 @@
 
 // ─────────────────────────────────────────────────────────────────────────────
 
+// ─── Boot Sequence ───────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+    const bootScreen = document.getElementById('boot-screen');
+    const bootText = document.getElementById('boot-text');
+    if (!bootScreen || !bootText) {
+        // If no boot screen, make sure scrolling is enabled
+        document.body.style.overflow = '';
+        return;
+    }
+
+    // Prevents scroll while booting
+    document.body.style.overflow = 'hidden';
+
+    // Scroll to top on load so the boot screen covers everything properly
+    window.scrollTo(0, 0);
+
+    const lines = [
+        "> Loading weights... [OK]",
+        "> Establishing DB connection... [OK]",
+        "> Initializing Khoi_Mai_Portfolio..."
+    ];
+
+    let currentLineIndex = 0;
+
+    function typeLine() {
+        if (currentLineIndex >= lines.length) {
+            // Finish booting
+            setTimeout(() => {
+                bootScreen.classList.add('hidden');
+                document.body.style.overflow = '';
+            }, 500);
+            
+            // Remove DOM element after transition completes
+            setTimeout(() => {
+                bootScreen.remove();
+            }, 1200);
+            return;
+        }
+
+        const lineDiv = document.createElement('div');
+        lineDiv.style.marginBottom = '6px';
+        bootText.appendChild(lineDiv);
+
+        const text = lines[currentLineIndex];
+        let charIndex = 0;
+
+        function typeChar() {
+            if (charIndex < text.length) {
+                lineDiv.textContent += text.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, 15 + Math.random() * 20); // typing speed
+            } else {
+                currentLineIndex++;
+                setTimeout(typeLine, 200 + Math.random() * 150); // delay between lines
+            }
+        }
+        
+        typeChar();
+    }
+
+    // Start boot sequence delay
+    setTimeout(typeLine, 200);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
+
 if (document.getElementById('my-work-link')) {
     document.getElementById('my-work-link').addEventListener('click', () => {
         document.getElementById('work-experience-section').scrollIntoView({ behavior: "smooth" })
