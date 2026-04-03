@@ -52,14 +52,14 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
 
     const lines = [
-        "> Loading weights... [OK]",
-        "> Establishing DB connection... [OK]",
-        "> Initializing Khoi_Mai_Portfolio..."
+        { text: "> Loading weights...", speed: 10, delay: 150 },
+        { text: "> Establishing DB connection... [OK]", speed: 12, delay: 100 },
+        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 15, delay: 150 }
     ];
 
     let currentLineIndex = 0;
 
-    function typeLine() {
+    function processLine() {
         if (currentLineIndex >= lines.length) {
             // Finish booting
             setTimeout(() => {
@@ -74,21 +74,21 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
+        const lineData = lines[currentLineIndex];
         const lineDiv = document.createElement('div');
         lineDiv.style.marginBottom = '6px';
         bootText.appendChild(lineDiv);
 
-        const text = lines[currentLineIndex];
         let charIndex = 0;
 
         function typeChar() {
-            if (charIndex < text.length) {
-                lineDiv.textContent += text.charAt(charIndex);
+            if (charIndex < lineData.text.length) {
+                lineDiv.textContent += lineData.text.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeChar, 15 + Math.random() * 20); // typing speed
+                setTimeout(typeChar, lineData.speed + Math.random() * 10);
             } else {
                 currentLineIndex++;
-                setTimeout(typeLine, 200 + Math.random() * 150); // delay between lines
+                setTimeout(processLine, lineData.delay);
             }
         }
         
@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Start boot sequence delay
-    setTimeout(typeLine, 200);
+    setTimeout(processLine, 50);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
