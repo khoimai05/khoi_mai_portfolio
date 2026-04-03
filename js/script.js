@@ -542,11 +542,13 @@ function sqlRender(result) {
     const widths = cols.map(c => Math.max(c.length, ...rows.map(r => String(r[c] ?? '').length)));
 
     const pad = (s, w) => String(s ?? '').padEnd(w);
-    const divider = widths.map(w => '─'.repeat(w + 2)).join('┼');
-    const header = cols.map((c, i) => ` ${pad(c, widths[i])} `).join('│');
-    const dataRows = rows.map(r => cols.map((c, i) => ` ${pad(r[c], widths[i])} `).join('│'));
+    const topBorder = '┌' + widths.map(w => '─'.repeat(w + 2)).join('┬') + '┐';
+    const header = '│' + cols.map((c, i) => ` ${pad(c, widths[i])} `).join('│') + '│';
+    const divider = '├' + widths.map(w => '─'.repeat(w + 2)).join('┼') + '┤';
+    const dataRows = rows.map(r => '│' + cols.map((c, i) => ` ${pad(r[c], widths[i])} `).join('│') + '│');
+    const bottomBorder = '└' + widths.map(w => '─'.repeat(w + 2)).join('┴') + '┘';
 
-    const lines = [header, divider, ...dataRows];
+    const lines = [topBorder, header, divider, ...dataRows, bottomBorder];
     const tableText = lines.join('\n');
 
     return `<pre class="sql-result-table">${tableText}</pre><div class="sql-rowcount">${rows.length} row${rows.length !== 1 ? 's' : ''}</div>`;
