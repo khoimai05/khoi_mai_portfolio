@@ -34,6 +34,13 @@
 </head>
 
 <body>
+  <!-- Liquid Mesh Gradient Background -->
+  <div id="mesh-gradient-bg">
+    <div class="mesh-blob mesh-c1"></div>
+    <div class="mesh-blob mesh-c2"></div>
+    <div class="mesh-blob mesh-c3"></div>
+  </div>
+
   <!-- Boot Screen Overlay -->
   <div id="boot-screen">
     <div class="boot-text-container">
@@ -51,7 +58,7 @@
   <!-- NAVBAR -->
   <div class="navbar">
     <a class="nav-title-link" href="./index.html">
-      <span class="nav-title">Khoi Mai</span>
+      <span class="nav-title scramble-decode" data-text="Khoi Mai">Khoi Mai</span>
     </a>
     <div class="nav-right">
       <div class="nav-links">
@@ -110,7 +117,7 @@
           -->
       <div id="portfolio-header-text-container">
         <div class="header-text">
-          <span class="main-title text-gradient">Hey, I'm Khoi!</span>
+          <span class="main-title text-gradient scramble-decode" data-text="Hey, I'm Khoi!">Hey, I'm Khoi!</span>
           <div class="body-text" style="margin-top: 8px;"><span class="purdue-gold">CS and DS @ Purdue University
               (boiler up!)</span></div>
         </div>
@@ -123,7 +130,7 @@
 
     <!-- GITHUB SECTION -->
     <div id="github-section">
-      <span class="subheader-text">GitHub Activity</span>
+      <span class="subheader-text scramble-decode" data-text="GitHub Activity">GitHub Activity</span>
       <div class="body-text github-section-hint">Recent contributions on GitHub</div>
 
       <div id="github-commit-graph" class="github-graph-card">
@@ -139,7 +146,7 @@
         - Add paragraphs using the <div class="body-text"></div> elements in the "about-section-content"
       -->
     <div id="about-section">
-      <span class="subheader-text">Background</span>
+      <span class="subheader-text scramble-decode" data-text="Background">Background</span>
       <div class="about-section-content">
         <div class="body-text">I'm a Junior at <span class="purdue-gold">Purdue</span> studying Computer Science and
           Data Science. My experience spans the full data lifecycle-from ETL processes, data modeling and feature
@@ -157,7 +164,7 @@
 
     <!-- SKILLS / TECH SECTION -->
     <div id="skills-section">
-      <span class="subheader-text">Skills & Tech</span>
+      <span class="subheader-text scramble-decode" data-text="Skills & Tech">Skills & Tech</span>
       <div class="skills-content">
         <span class="skills-label body-text">Libraries:</span>
         <span class="skill-pill"><img src="./assets/images/scikit-learn.svg" alt="Scikit-learn" class="skill-icon">
@@ -179,7 +186,7 @@
 
     <!-- SQL TERMINAL SECTION -->
     <div id="sql-section">
-      <span class="subheader-text">Query Me</span>
+      <span class="subheader-text scramble-decode" data-text="Query Me">Query Me</span>
       <div class="sql-section-hint">I speak SQL — try clicking a query below to learn about me ↓</div>
 
       <div id="sql-terminal">
@@ -197,7 +204,7 @@
 
     <!-- WORK EXPERIENCE SECTION -->
     <div id="work-experience-section">
-      <span class="subheader-text">Work Experience</span>
+      <span class="subheader-text scramble-decode" data-text="Work Experience">Work Experience</span>
 
       <div class="projects-container">
         <!-- <div class="project-card">
@@ -209,144 +216,165 @@
           </div> -->
 
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [1]:</div>
-          <pre><code style="color:#CFB991;">experience_df.loc['Antsomi']</code></pre>
-        </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[1]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/antsomi_new.jpg" alt="Antsomi" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">Data Science Intern</div>
-            <div class="body-text project-card-text">marketing models, feature engineering</div>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [1]:</div>
+            <pre><code style="color:#CFB991;">experience_df.loc['Antsomi']</code></pre>
           </div>
-        </div></div></div></div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[1]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/antsomi_new.jpg" alt="Antsomi" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">Data Science Intern</div>
+                  <div class="body-text project-card-text">marketing models, feature engineering</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [2]:</div>
-          <pre><code style="color:#CFB991;">experience_df.query("company == 'OCB'")</code></pre>
-        </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[2]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/ocb-websosc-heroimg555.webp" alt="OCB" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">Analytics Intern</div>
-            <div class="body-text project-card-text">etl, dashboards</div>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [2]:</div>
+            <pre><code style="color:#CFB991;">experience_df.query("company == 'OCB'")</code></pre>
           </div>
-        </div></div></div></div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[2]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/ocb-websosc-heroimg555.webp" alt="OCB" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">Analytics Intern</div>
+                  <div class="body-text project-card-text">etl, dashboards</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [3]:</div>
-          <pre><code style="color:#CFB991;">experience_df[experience_df['role'].str.contains('NLP')]</code></pre>
-        </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[3]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/vrai.png" alt="VRAI" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">NLP Researcher</div>
-            <div class="body-text project-card-text">academic research, topic modeling</div>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [3]:</div>
+            <pre><code style="color:#CFB991;">experience_df[experience_df['role'].str.contains('NLP')]</code></pre>
           </div>
-        </div></div></div></div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[3]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/vrai.png" alt="VRAI" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">NLP Researcher</div>
+                  <div class="body-text project-card-text">academic research, topic modeling</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [4]:</div>
-          <pre><code style="color:#CFB991;">experience_df.loc['Discovery Park']</code></pre>
-        </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[4]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/dp.jpg" alt="DP" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">Data Science Intern</div>
-            <div class="body-text project-card-text">data transformation, statistical testings</div>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [4]:</div>
+            <pre><code style="color:#CFB991;">experience_df.loc['Discovery Park']</code></pre>
           </div>
-        </div></div></div></div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[4]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/dp.jpg" alt="DP" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">Data Science Intern</div>
+                  <div class="body-text project-card-text">data transformation, statistical testings</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- PROJECTS AND HACKATHON SECTION -->
     <div id="projects-hackathon-section">
-      <span class="subheader-text">Projects & Hackathon</span>
+      <span class="subheader-text scramble-decode" data-text="Projects & Hackathon">Projects & Hackathon</span>
 
       <div class="projects-container">
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [5]:</div>
-          <pre><code style="color:#CFB991;">projects_df.loc['Microsoft Hackathon']</code></pre>
-        </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[5]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/microsoft.png" alt="Microsoft Hackathon" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">1st Runner Up</div>
-            <div class="body-text project-card-text">Microsoft VN GenAI Hackathon</div>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [5]:</div>
+            <pre><code style="color:#CFB991;">projects_df.loc['Microsoft Hackathon']</code></pre>
           </div>
-          <a class="button" target="_blank"
-            href="https://www.linkedin.com/posts/alextpd_ocb-dataai-activity-7209846066853134337-SQXD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEDZd-0BUrNLCIiCFHbNq3U9x-rMXJCt7LI">
-            <span class="button-text">More</span>
-            <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
-          </a>
-        </div></div></div></div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[5]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/microsoft.png" alt="Microsoft Hackathon" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">1st Runner Up</div>
+                  <div class="body-text project-card-text">Microsoft VN GenAI Hackathon</div>
+                </div>
+                <a class="button" target="_blank"
+                  href="https://www.linkedin.com/posts/alextpd_ocb-dataai-activity-7209846066853134337-SQXD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEDZd-0BUrNLCIiCFHbNq3U9x-rMXJCt7LI">
+                  <span class="button-text">More</span>
+                  <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [6]:</div>
-          <pre><code style="color:#CFB991;">projects_df.query("topic == 'NCAA Basketball'")</code></pre>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [6]:</div>
+            <pre><code style="color:#CFB991;">projects_df.query("topic == 'NCAA Basketball'")</code></pre>
+          </div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[6]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/elite-edge.png" alt="Elite Edge Basketball" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">NCAA Basketball Analytics</div>
+                  <div class="body-text project-card-text">the joy from coding + the love of basketball</div>
+                </div>
+                <div class="button-container">
+                  <a class="button" target="_blank" href="https://www.eliteedge.one/">
+                    <span class="button-text">Visit</span>
+                    <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                  </a>
+                  <a class="button" target="_blank"
+                    href="https://medium.com/@maixuankhoi05/a-decade-of-college-basketball-9a0eaeb3806e">
+                    <span class="button-text">Blog</span>
+                    <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[6]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/elite-edge.png" alt="Elite Edge Basketball" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">NCAA Basketball Analytics</div>
-            <div class="body-text project-card-text">the joy from coding + the love of basketball</div>
-          </div>
-          <div class="button-container">
-            <a class="button" target="_blank" href="https://www.eliteedge.one/">
-              <span class="button-text">Visit</span>
-              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
-            </a>
-            <a class="button" target="_blank"
-              href="https://medium.com/@maixuankhoi05/a-decade-of-college-basketball-9a0eaeb3806e">
-              <span class="button-text">Blog</span>
-              <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
-            </a>
-          </div>
-        </div></div></div></div>
 
         <!-- <div class="projects-container"> -->
         <div class="nb-cell-wrapper">
-        <div class="nb-cell">
-          <div class="nb-prompt">In [7]:</div>
-          <pre><code style="color:#CFB991;">projects_df.tail(1)</code></pre>
-        </div>
-        <div class="nb-cell nb-output">
-          <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[7]:</div>
-          <div class="nb-output-content jupyter-card-output">
-            <div class="project-card magnetic-card">
-              <img src="./assets/images/playground.png" alt="DS Playground" class="project-image">
-          <div class="project-card-text-container">
-            <div class="subheader-text project-title">DS Playground</div>
-            <div class="body-text project-card-text">building blocks for understanding data science</div>
+          <div class="nb-cell">
+            <div class="nb-prompt">In [7]:</div>
+            <pre><code style="color:#CFB991;">projects_df.tail(1)</code></pre>
           </div>
-          <a class="button" target="_blank" href="https://khoimai05.github.io/Data-Science-Playground/">
-            <span class="button-text">Visit</span>
-            <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
-          </a>
-        </div></div></div></div>
+          <div class="nb-cell nb-output">
+            <div class="nb-prompt" style="color:rgba(207, 185, 145, 0.4);">Out[7]:</div>
+            <div class="nb-output-content jupyter-card-output">
+              <div class="project-card magnetic-card">
+                <img src="./assets/images/playground.png" alt="DS Playground" class="project-image">
+                <div class="project-card-text-container">
+                  <div class="subheader-text project-title">DS Playground</div>
+                  <div class="body-text project-card-text">building blocks for understanding data science</div>
+                </div>
+                <a class="button" target="_blank" href="https://khoimai05.github.io/Data-Science-Playground/">
+                  <span class="button-text">Visit</span>
+                  <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <!-- </div>  -->
     </div>

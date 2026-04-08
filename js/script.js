@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 bootScreen.classList.add('hidden');
                 document.body.style.overflow = '';
             }, 500);
-            
+
             // Remove DOM element after transition completes
             setTimeout(() => {
                 bootScreen.remove();
@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 setTimeout(processLine, lineData.delay);
             }
         }
-        
+
         typeChar();
     }
 
@@ -115,7 +115,7 @@ const observerOptions = {
     rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver(function(entries) {
+const observer = new IntersectionObserver(function (entries) {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             const cards = entry.target.querySelectorAll('.project-card');
@@ -147,7 +147,7 @@ const scatterCount = 25;
 
 function seedRandom(seed) {
     let s = seed;
-    return function() {
+    return function () {
         s = (s * 16807 + 0) % 2147483647;
         return s / 2147483647;
     };
@@ -308,6 +308,57 @@ window.addEventListener('resize', () => {
     canvas.height = window.innerHeight;
     initScatterPoints();
 });
+
+
+// --- Scramble Text Animation ---
+const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#________';
+
+function scrambleText(el) {
+    if (el.dataset.scrambled === 'true') return;
+    el.dataset.scrambled = 'true';
+
+    // Clear any existing interval just in case
+    if (el.dataset.intervalId) {
+        clearInterval(parseInt(el.dataset.intervalId));
+    }
+
+    const originalText = el.dataset.text || el.innerText;
+    let iterations = 0;
+    const maxIterations = originalText.length;
+
+    const interval = setInterval(() => {
+        el.innerText = originalText
+            .split('')
+            .map((letter, index) => {
+                if (index < Math.floor(iterations)) {
+                    return originalText[index];
+                }
+                return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+            })
+            .join('');
+
+        if (iterations >= maxIterations) {
+            clearInterval(interval);
+            el.innerText = originalText;
+            delete el.dataset.intervalId;
+        }
+
+        iterations += 1/2;
+    }, 30);
+
+    el.dataset.intervalId = interval;
+}
+
+const scrambleObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            scrambleText(entry.target);
+            scrambleObserver.unobserve(entry.target); // Keep it scrolled once
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.scramble-decode').forEach(el => scrambleObserver.observe(el));
 
 
 // Scroll Reveal for Sections
