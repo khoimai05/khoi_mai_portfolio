@@ -52,9 +52,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
 
     const lines = [
-        { text: "> Loading weights...", speed: 10, delay: 150 },
-        { text: "> Establishing DB connection... [OK]", speed: 12, delay: 100 },
-        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 15, delay: 150 }
+        { text: "> Loading weights...", speed: 4, delay: 45 },
+        { text: "> Establishing DB connection... [OK]", speed: 4, delay: 35 },
+        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 4, delay: 45 }
     ];
 
     let currentLineIndex = 0;
@@ -65,9 +65,9 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 bootScreen.classList.add('hidden');
                 document.body.style.overflow = '';
-            }, 500);
+            }, 180);
 
-            // Remove DOM element after transition completes
+            // Remove DOM element after transition completes (match 0.6s CSS transition)
             setTimeout(() => {
                 bootScreen.remove();
             }, 1200);
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (charIndex < lineData.text.length) {
                 lineDiv.textContent += lineData.text.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeChar, lineData.speed + Math.random() * 10);
+                setTimeout(typeChar, lineData.speed + Math.random() * 4);
             } else {
                 currentLineIndex++;
                 setTimeout(processLine, lineData.delay);
@@ -95,8 +95,7 @@ document.addEventListener('DOMContentLoaded', () => {
         typeChar();
     }
 
-    // Start boot sequence delay
-    setTimeout(processLine, 50);
+    setTimeout(processLine, 20);
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
