@@ -45,6 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
+    // If the user has already seen the boot screen in this session, skip it entirely
+    if (sessionStorage.getItem('hasBooted')) {
+        bootScreen.remove();
+        document.body.style.overflow = '';
+        return;
+    }
+
     // Prevents scroll while booting
     document.body.style.overflow = 'hidden';
 
@@ -52,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
 
     const lines = [
-        { text: "> Loading weights...", speed: 4, delay: 45 },
-        { text: "> Establishing DB connection... [OK]", speed: 4, delay: 35 },
-        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 4, delay: 45 }
+        { text: "> Loading weights...", speed: 2, delay: 20 },
+        { text: "> Establishing DB connection... [OK]", speed: 3, delay: 180 },
+        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 1, delay: 20 }
     ];
 
     let currentLineIndex = 0;
@@ -65,7 +72,8 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 bootScreen.classList.add('hidden');
                 document.body.style.overflow = '';
-            }, 180);
+                sessionStorage.setItem('hasBooted', 'true');
+            }, 80);
 
             // Remove DOM element after transition completes (match 0.6s CSS transition)
             setTimeout(() => {
@@ -85,7 +93,8 @@ document.addEventListener('DOMContentLoaded', () => {
             if (charIndex < lineData.text.length) {
                 lineDiv.textContent += lineData.text.charAt(charIndex);
                 charIndex++;
-                setTimeout(typeChar, lineData.speed + Math.random() * 4);
+                // Faster pacing with less randomness
+                setTimeout(typeChar, lineData.speed + Math.random() * 2);
             } else {
                 currentLineIndex++;
                 setTimeout(processLine, lineData.delay);
@@ -309,55 +318,7 @@ window.addEventListener('resize', () => {
 });
 
 
-// --- Scramble Text Animation ---
-const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#________';
 
-function scrambleText(el) {
-    if (el.dataset.scrambled === 'true') return;
-    el.dataset.scrambled = 'true';
-
-    // Clear any existing interval just in case
-    if (el.dataset.intervalId) {
-        clearInterval(parseInt(el.dataset.intervalId));
-    }
-
-    const originalText = el.dataset.text || el.innerText;
-    let iterations = 0;
-    const maxIterations = originalText.length;
-
-    const interval = setInterval(() => {
-        el.innerText = originalText
-            .split('')
-            .map((letter, index) => {
-                if (index < Math.floor(iterations)) {
-                    return originalText[index];
-                }
-                return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
-            })
-            .join('');
-
-        if (iterations >= maxIterations) {
-            clearInterval(interval);
-            el.innerText = originalText;
-            delete el.dataset.intervalId;
-        }
-
-        iterations += 1/2;
-    }, 30);
-
-    el.dataset.intervalId = interval;
-}
-
-const scrambleObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            scrambleText(entry.target);
-            scrambleObserver.unobserve(entry.target); // Keep it scrolled once
-        }
-    });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.scramble-decode').forEach(el => scrambleObserver.observe(el));
 
 
 // Scroll Reveal for Sections
@@ -610,13 +571,37 @@ function sqlInit() {
 
     const output = terminal.querySelector('.sql-output');
     const chips = terminal.querySelectorAll('.sql-chip');
+    
+    let isTyping = false;
 
     function run(query) {
-        if (!query.trim()) return;
+        if (!query.trim() || isTyping) return;
+        isTyping = true;
+        
         chips.forEach(c => c.classList.toggle('sql-chip-active', c.dataset.query === query));
-        const result = sqlParse(query);
-        const html = sqlRender(result);
-        output.innerHTML = `<div class="sql-echo">› ${query}</div>${html}`;
+        
+        // Setup typing container
+        output.innerHTML = `<div class="sql-echo">› <span class="sql-typing-text"></span><span class="boot-cursor">_</span></div>`;
+        const typingText = output.querySelector('.sql-typing-text');
+        
+        let charIndex = 0;
+        function typeChar() {
+            if (charIndex < query.length) {
+                typingText.textContent += query.charAt(charIndex);
+                charIndex++;
+                setTimeout(typeChar, 15 + Math.random() * 20); // Fast, variable typing
+            } else {
+                // Done typing, execute with a realistic pause
+                setTimeout(() => {
+                    const result = sqlParse(query);
+                    const html = sqlRender(result);
+                    output.innerHTML = `<div class="sql-echo">› ${query}</div>${html}`;
+                    isTyping = false;
+                }, 200); 
+            }
+        }
+        
+        typeChar();
     }
 
     chips.forEach(chip => {
