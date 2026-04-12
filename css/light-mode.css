@@ -11,6 +11,23 @@ body.light-mode {
   color: #1a1a1a;
 }
 
+/* Mesh layer sits above the body background (z-index: -2); must be lightened or the page stays dark */
+body.light-mode #mesh-gradient-bg {
+  background-color: #f0ece4;
+}
+
+body.light-mode .mesh-c1 {
+  background: radial-gradient(circle, rgba(154, 124, 64, 0.22) 0%, transparent 60%);
+}
+
+body.light-mode .mesh-c2 {
+  background: radial-gradient(circle, rgba(180, 170, 150, 0.45) 0%, transparent 60%);
+}
+
+body.light-mode .mesh-c3 {
+  background: radial-gradient(circle, rgba(207, 185, 145, 0.2) 0%, transparent 60%);
+}
+
 /* Scrollbar */
 body.light-mode ::-webkit-scrollbar-track {
   background: #ede8e0;
