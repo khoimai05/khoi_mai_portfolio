@@ -48,7 +48,6 @@ a.icon-link:hover {
 }
 
 .nav-title-link {
-  color: black;
   text-decoration: none;
 }
 
@@ -197,7 +196,7 @@ a.button:hover .right-arrow-icon {
 /* Link Styling */
 a.no-underline {
   text-decoration: none;
-  color: black
+  color: black;
 }
 
 a.no-underline:hover {

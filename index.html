@@ -65,7 +65,7 @@
       <div class="nav-links">
         <a href="./blog.html">Blog</a>
       </div>
-      <button id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
+      <button type="button" id="theme-toggle" aria-label="Toggle light/dark mode" title="Toggle theme">
         <!-- Sun: shown in dark mode to switch to light -->
         <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -103,7 +103,7 @@
             - If you aren't using an Unemployable as your image, remove the entire "a" element
           -->
         <img src="./assets/images/new_potrait.jpg" alt="Khoi Mai Portrait" class="portfolio-header-image blob-tilt">
-        <a class="no-underline" target="_blank"
+        <a class="no-underline" target="_blank" rel="noopener noreferrer"
           href="https://opensea.io/assets/0xe0be388ab81c47b0f098d2030a1c9ef190691a8a/1311">
           <span class="image-caption"></span>
         </a>
@@ -112,7 +112,7 @@
       <!--
             TODO
 
-            - Change the main-title to whatver you want
+            - Change the main-title to whatever you want
             - Change the body-text after that to a quick introduction to what you do
             - Edit the button text if you feel like it. It will link to the projects section below.
           -->
@@ -122,9 +122,9 @@
           <div class="body-text" style="margin-top: 8px;"><span class="purdue-gold">CS and DS @ Purdue University
               (boiler up!)</span></div>
         </div>
-        <a class="button" id="my-work-link">
+        <a class="button" id="my-work-link" href="#work-experience-section">
           <span class="button-text">My experience</span>
-          <image src="./assets/icons/arrow-right.svg" alt="Right Arrow" class="right-arrow-icon" />
+          <img src="./assets/icons/arrow-right.svg" alt="" class="right-arrow-icon" width="16" height="16" />
         </a>
       </div>
     </div>
@@ -313,10 +313,10 @@
                   <div class="subheader-text project-title">1st Runner Up</div>
                   <div class="body-text project-card-text">Microsoft VN GenAI Hackathon</div>
                 </div>
-                <a class="button" target="_blank"
+                <a class="button" target="_blank" rel="noopener noreferrer"
                   href="https://www.linkedin.com/posts/alextpd_ocb-dataai-activity-7209846066853134337-SQXD?utm_source=share&utm_medium=member_desktop&rcm=ACoAAEDZd-0BUrNLCIiCFHbNq3U9x-rMXJCt7LI">
                   <span class="button-text">More</span>
-                  <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                  <img src="./assets/icons/arrow-right.svg" alt="" class="right-arrow-icon" width="16" height="16" />
                 </a>
               </div>
             </div>
@@ -338,14 +338,14 @@
                   <div class="body-text project-card-text">the joy from coding + the love of basketball</div>
                 </div>
                 <div class="button-container">
-                  <a class="button" target="_blank" href="https://www.eliteedge.one/">
+                  <a class="button" target="_blank" rel="noopener noreferrer" href="https://www.eliteedge.one/">
                     <span class="button-text">Visit</span>
-                    <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                    <img src="./assets/icons/arrow-right.svg" alt="" class="right-arrow-icon" width="16" height="16" />
                   </a>
-                  <a class="button" target="_blank"
+                  <a class="button" target="_blank" rel="noopener noreferrer"
                     href="https://medium.com/@maixuankhoi05/a-decade-of-college-basketball-9a0eaeb3806e">
                     <span class="button-text">Blog</span>
-                    <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                    <img src="./assets/icons/arrow-right.svg" alt="" class="right-arrow-icon" width="16" height="16" />
                   </a>
                 </div>
               </div>
@@ -353,7 +353,6 @@
           </div>
         </div>
 
-        <!-- <div class="projects-container"> -->
         <div class="nb-cell-wrapper">
           <div class="nb-cell">
             <div class="nb-prompt">In [7]:</div>
@@ -368,18 +367,17 @@
                   <div class="subheader-text project-title">DS Playground</div>
                   <div class="body-text project-card-text">building blocks for understanding data science</div>
                 </div>
-                <a class="button" target="_blank" href="https://khoimai05.github.io/Data-Science-Playground/">
+                <a class="button" target="_blank" rel="noopener noreferrer"
+                  href="https://khoimai05.github.io/Data-Science-Playground/">
                   <span class="button-text">Visit</span>
-                  <image src="./assets/icons/arrow-right.svg" class="right-arrow-icon" />
+                  <img src="./assets/icons/arrow-right.svg" alt="" class="right-arrow-icon" width="16" height="16" />
                 </a>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <!-- </div>  -->
     </div>
-  </div>
   </div>
   <!-- FOOTER -->
   <div id="footer">
@@ -394,24 +392,28 @@
 
         This should be the same across all pages.
       -->
-    <a class="icon-link" target="_blank" href="https://www.linkedin.com/in/khoi-maix/">
-      <image src="./assets/icons/li.svg" class="footer-icon" />
+    <a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/khoi-maix/"
+      aria-label="LinkedIn">
+      <img src="./assets/icons/li.svg" class="footer-icon" alt="" width="20" height="20" />
     </a>
     <!--
         TODO - Change the email after "mailto" to your contact email
 
         This should be the same across all pages.
       -->
-    <a class="icon-link" href="mailto:maixuankhoi05@gmail.com">
-      <image src="./assets/icons/mail.svg" class="footer-icon" />
+    <a class="icon-link" href="mailto:maixuankhoi05@gmail.com" aria-label="Email">
+      <img src="./assets/icons/mail.svg" class="footer-icon" alt="" width="20" height="20" />
     </a>
 
-    <a class="icon-link" target="_blank" href="https://medium.com/@maixuankhoi05">
-      <image src="./assets/icons/Medium.svg" class="footer-icon" />
+    <a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://medium.com/@maixuankhoi05"
+      aria-label="Medium">
+      <img src="./assets/icons/Medium.svg" class="footer-icon" alt="" width="20" height="20" />
     </a>
-    <a class="icon-link" target="_blank" href="https://github.com/khoimai05">
-      <image src="./assets/icons/github.svg" class="footer-icon" />
+    <a class="icon-link" target="_blank" rel="noopener noreferrer" href="https://github.com/khoimai05"
+      aria-label="GitHub">
+      <img src="./assets/icons/github.svg" class="footer-icon" alt="" width="20" height="20" />
     </a>
+  </div>
 </body>
 
 </html>

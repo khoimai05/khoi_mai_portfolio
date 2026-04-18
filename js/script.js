@@ -109,10 +109,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // ─────────────────────────────────────────────────────────────────────────────
 
-if (document.getElementById('my-work-link')) {
-    document.getElementById('my-work-link').addEventListener('click', () => {
-        document.getElementById('work-experience-section').scrollIntoView({ behavior: "smooth" })
-    })
+const myWorkLink = document.getElementById('my-work-link');
+const workExperienceSection = document.getElementById('work-experience-section');
+if (myWorkLink && workExperienceSection) {
+    myWorkLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        workExperienceSection.scrollIntoView({ behavior: 'smooth' });
+    });
 }
 
 // Scroll animation for project cards (all appear together per section)
@@ -325,7 +328,6 @@ window.addEventListener('resize', () => {
 const aboutSection = document.getElementById('about-section');
 const skillsSection = document.getElementById('skills-section');
 const sqlSection = document.getElementById('sql-section');
-const workExperienceSection = document.getElementById('work-experience-section');
 const projectsHackathonSection = document.getElementById('projects-hackathon-section');
 
 const sectionObserver = new IntersectionObserver((entries) => {
