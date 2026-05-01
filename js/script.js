@@ -425,6 +425,13 @@ if (navbar) {
 const SQL_DB = {
     experience: [
         {
+            company: 'Zotec Financial',
+            role: 'Data Scientist Intern',
+            period: 'Jun 2026 – Aug 2026',
+            location: 'Carmel, IN',
+            highlight: 'TBD: revenue cycle management'
+        },
+        {
             company: 'Discovery Park',
             role: 'Data Science Researcher',
             period: 'Dec 2025 – Now',
@@ -437,6 +444,13 @@ const SQL_DB = {
             period: 'Jun 2025 – Aug 2025',
             location: 'Ho Chi Minh City, VN',
             highlight: '89% accuracy model identifying 25K+ high-value prospects from 300K+ users monthly'
+        },
+        {
+            company: 'Algoverse',
+            role: 'LLM Research Intern',
+            period: 'Jun 2025 – Sep 2025',
+            location: 'Palo Alto, CA (remote)',
+            highlight: 'studying context rot in vision-language models'
         },
         {
             company: 'VRAI Lab',
