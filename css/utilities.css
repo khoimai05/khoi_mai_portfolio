@@ -629,3 +629,16 @@ a.icon-link {
   margin-top: -4px;
   font-style: italic;
 }
+
+/* Film Grain Overlay — element generated and animated by JS */
+#grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 99999;
+  opacity: 0.03;
+  background-repeat: repeat;
+}

@@ -792,3 +792,48 @@ async function initGitHubGraph() {
 
 window.addEventListener('resize', pinGitHubGraphRight);
 document.addEventListener('DOMContentLoaded', initGitHubGraph);
+
+// ─── Film Grain ───────────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', () => {
+    const overlay = document.getElementById('grain-overlay');
+    if (!overlay) return;
+
+    const SIZE = 200;
+    const FRAME_COUNT = 6;
+    const FRAME_INTERVAL = 120; // ms between frame swaps (~12fps grain)
+
+    // Pre-generate FRAME_COUNT unique noise textures
+    const frames = Array.from({ length: FRAME_COUNT }, () => {
+        const c = document.createElement('canvas');
+        c.width = SIZE;
+        c.height = SIZE;
+        const ctx = c.getContext('2d');
+        const img = ctx.createImageData(SIZE, SIZE);
+        for (let i = 0; i < img.data.length; i += 4) {
+            const v = Math.random() * 255 | 0;
+            img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+            img.data[i + 3] = 255;
+        }
+        ctx.putImageData(img, 0, 0);
+        return c.toDataURL();
+    });
+
+    overlay.style.backgroundSize = `${SIZE}px ${SIZE}px`;
+
+    let frameIdx = 0;
+    let lastSwap = 0;
+
+    function tickGrain(t) {
+        if (t - lastSwap >= FRAME_INTERVAL) {
+            overlay.style.backgroundImage = `url(${frames[frameIdx]})`;
+            frameIdx = (frameIdx + 1) % FRAME_COUNT;
+            lastSwap = t;
+        }
+        requestAnimationFrame(tickGrain);
+    }
+
+    requestAnimationFrame(tickGrain);
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
