@@ -61,24 +61,49 @@ document.addEventListener('DOMContentLoaded', () => {
     const lines = [
         { text: "> Loading weights...", speed: 2, delay: 20 },
         { text: "> Establishing DB connection... [OK]", speed: 3, delay: 180 },
-        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 1, delay: 20 }
+        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 1, delay: 120 }
     ];
 
     let currentLineIndex = 0;
 
+    function animateProgressBar(onComplete) {
+        const BLOCKS = 20;
+        const DURATION = 700; // ms to fill the full bar
+        const STEP = DURATION / BLOCKS;
+
+        const barDiv = document.createElement('div');
+        barDiv.style.marginTop = '4px';
+        bootText.appendChild(barDiv);
+
+        let filled = 0;
+
+        function tick() {
+            const done = '█'.repeat(filled);
+            const empty = '░'.repeat(BLOCKS - filled);
+            const pct = Math.round((filled / BLOCKS) * 100);
+            barDiv.textContent = `[${done}${empty}] ${pct}%`;
+
+            if (filled < BLOCKS) {
+                filled++;
+                setTimeout(tick, STEP);
+            } else {
+                setTimeout(onComplete, 250);
+            }
+        }
+
+        tick();
+    }
+
+    function finishBoot() {
+        bootScreen.classList.add('hidden');
+        document.body.style.overflow = '';
+        sessionStorage.setItem('hasBooted', 'true');
+        setTimeout(() => bootScreen.remove(), 1200);
+    }
+
     function processLine() {
         if (currentLineIndex >= lines.length) {
-            // Finish booting
-            setTimeout(() => {
-                bootScreen.classList.add('hidden');
-                document.body.style.overflow = '';
-                sessionStorage.setItem('hasBooted', 'true');
-            }, 80);
-
-            // Remove DOM element after transition completes (match 0.6s CSS transition)
-            setTimeout(() => {
-                bootScreen.remove();
-            }, 1200);
+            animateProgressBar(finishBoot);
             return;
         }
 
@@ -93,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (charIndex < lineData.text.length) {
                 lineDiv.textContent += lineData.text.charAt(charIndex);
                 charIndex++;
-                // Faster pacing with less randomness
                 setTimeout(typeChar, lineData.speed + Math.random() * 2);
             } else {
                 currentLineIndex++;
