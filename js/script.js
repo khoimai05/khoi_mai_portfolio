@@ -59,9 +59,9 @@ document.addEventListener('DOMContentLoaded', () => {
     window.scrollTo(0, 0);
 
     const lines = [
-        { text: "> Loading weights...", speed: 2, delay: 20 },
-        { text: "> Establishing DB connection... [OK]", speed: 3, delay: 180 },
-        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 1, delay: 120 }
+        { text: "> Loading weights...", speed: 10, delay: 20 },
+        { text: "> Establishing DB connection... [OK]", speed: 10, delay: 180 },
+        { text: "> Initializing Khoi_Mai_Portfolio... [READY]", speed: 10, delay: 120 }
     ];
 
     let currentLineIndex = 0;
