@@ -861,3 +861,23 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ─────────────────────────────────────────────────────────────────────────────
+
+// ─── Visitor Counter ──────────────────────────────────────────────────────────
+
+document.addEventListener('DOMContentLoaded', async () => {
+    const counter = document.getElementById('visitor-counter');
+    const countEl = document.getElementById('visitor-count');
+    if (!counter || !countEl) return;
+
+    try {
+        const res = await fetch('https://api.countapi.xyz/hit/khoimai05.github.io/visits');
+        if (!res.ok) throw new Error();
+        const { value } = await res.json();
+        countEl.textContent = value.toLocaleString();
+        counter.style.display = 'block';
+    } catch {
+        // API unavailable — keep counter hidden, no broken UI
+    }
+});
+
+// ─────────────────────────────────────────────────────────────────────────────
