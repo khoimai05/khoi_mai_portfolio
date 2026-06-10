@@ -1,12 +1,41 @@
+@font-face {
+  font-family: 'Barber';
+  src: url('../assets/fonts/Barber-Complete.woff2') format('woff2'),
+       url('../assets/fonts/Barber-Complete.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lost Vietnam';
+  src: url('../assets/fonts/LostVietnam-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 body {
   font-family: 'Inter', sans-serif;
 }
 
 .nav-title {
-  font-family: 'Fira Code', monospace;
-  font-weight: 700;
-  font-size: 24px;
+  font-family: 'Lost Vietnam', sans-serif;
+  font-weight: normal;
+  font-size: 28px;
+  line-height: 1;
+  display: block;
+  white-space: nowrap;
 }
+
+.main-title {
+  font-family: 'Fira Code', monospace;
+  font-size: 72px;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
 
 .button-text {
   font-family: 'Fira Code', monospace;
@@ -17,14 +46,6 @@ body {
 .image-caption {
   font-size: 14px;
   font-weight: 500;
-}
-
-.main-title {
-  font-family: 'Fira Code', monospace;
-  font-size: 72px;
-  font-weight: 700;
-  line-height: 1.05;
-  letter-spacing: -1px;
 }
 
 .subheader-text {
@@ -55,4 +76,10 @@ body {
   -webkit-line-clamp: 1;
   line-clamp: 1;
   -webkit-box-orient: vertical;
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-title {
+    font-size: 22px;
+  }
 }

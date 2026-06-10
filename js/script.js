@@ -509,7 +509,6 @@ const SQL_DB = {
         { name: 'dbt', category: 'technology' },
     ],
     projects: [
-        { name: 'diSECt', type: 'RAG & RAG-to-SQL pipeline', status: 'live', link: 'https://alpha-encoder.vercel.app/' },
         { name: 'Elite Edge', type: 'analytics platform', status: 'Running', link: 'https://www.eliteedge.one/' },
         { name: 'Microsoft Hackathon', type: 'hackathon', status: '2nd / 10 teams', link: 'https://www.linkedin.com/in/khoi-maix/' },
         { name: 'DS Playground', type: 'education', status: 'live', link: 'https://khoimai05.github.io/Data-Science-Playground/' },
