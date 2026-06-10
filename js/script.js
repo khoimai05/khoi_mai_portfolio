@@ -451,44 +451,44 @@ const SQL_DB = {
         {
             company: 'Zotec Financial',
             role: 'Data Scientist Intern',
-            period: 'Jun 2026 – Aug 2026',
+            period: 'Jun 2026 – Present',
             location: 'Carmel, IN',
-            highlight: 'TBD: revenue cycle management'
+            highlight: 'Automated Propensity To Pay retraining on AWS SageMaker — 13 days to 1 hour (98% reduction) across 120M+ billing encounters; 5 production automation components across Dev/Staging/Prod'
         },
         {
             company: 'Discovery Park',
-            role: 'Data Science Researcher',
+            role: 'EV Adoption Research',
             period: 'Dec 2025 – Now',
             location: 'West Lafayette, IN',
-            highlight: 'Regression models on 200K+ EV permits & 1M+ POI records across 150+ neighborhoods'
+            highlight: 'Geospatial ETL from 200K+ EV permits & 1M+ POI records; two-way FE regression across 20K+ Census Block Groups — DUIRI $1,000 grant recipient'
         },
         {
             company: 'Antsomi',
             role: 'Data Scientist Intern',
             period: 'Jun 2025 – Aug 2025',
             location: 'Ho Chi Minh City, VN',
-            highlight: '89% accuracy model identifying 25K+ high-value prospects from 300K+ users monthly'
+            highlight: 'XGBoost model (89% accuracy, 77% recall) on 3M+ Golden SpoonS interactions; BERT + K-Means product segmentation across 30K+ transactions'
         },
         {
             company: 'Algoverse',
-            role: 'LLM Research Intern',
-            period: 'Jun 2025 – Sep 2025',
+            role: 'LLM Research Fellow',
+            period: 'Jun 2025 – Aug 2025',
             location: 'Palo Alto, CA (remote)',
-            highlight: 'studying context rot in vision-language models'
+            highlight: 'Built GPT-4o caption pipeline (50–500+ words); caption-augmented inputs caused 4% accuracy degradation benchmarking Qwen-2.5-7B and GPT-4o on OKVQA'
         },
         {
             company: 'VRAI Lab',
             role: 'NLP Research Assistant',
             period: 'Sep 2024 – Now',
             location: 'West Lafayette, IN',
-            highlight: 'Pipelines ingesting 10K+ papers at 450+ papers/hour; LDA topic modeling for Purdue faculty'
+            highlight: 'Automated pipelines ingesting 10K+ papers (20GB+/run) at 450+ papers/hour with 86% extraction success; LDA topic modeling for Purdue faculty'
         },
         {
             company: 'OCB',
-            role: 'Analytics Engineer Intern',
+            role: 'Data Scientist Intern',
             period: 'May 2024 – Aug 2024',
             location: 'Ho Chi Minh City, VN',
-            highlight: '30% faster SQL queries via 3NF optimization; Power BI dashboards across 30+ provinces'
+            highlight: 'Pharmacy acquisition scoring model ranking 35K+ prospects across 20+ provinces; regex ETL across 30+ sources cut processing from 5 days to 3 hours'
         },
     ],
     skills: [
@@ -509,9 +509,10 @@ const SQL_DB = {
         { name: 'dbt', category: 'technology' },
     ],
     projects: [
-        { name: 'Elite Edge', type: 'analytics platform', status: 'Running', link: 'https://www.eliteedge.one/' },
-        { name: 'Microsoft Hackathon', type: 'hackathon', status: '2nd / 10 teams', link: 'https://www.linkedin.com/in/khoi-maix/' },
-        { name: 'DS Playground', type: 'education', status: 'live', link: 'https://khoimai05.github.io/Data-Science-Playground/' },
+        { name: 'diSECt', type: 'RAG & RAG-to-SQL — 30% retrieval lift', status: 'live', link: 'https://alpha-encoder.vercel.app/' },
+        { name: 'Elite Edge', type: 'NCAA analytics — 85% selection accuracy', status: 'Running', link: 'https://www.eliteedge.one/' },
+        { name: 'Microsoft Hackathon', type: '2nd Place — OCB production chatbot', status: 'Vietnam National', link: 'https://www.linkedin.com/in/khoi-maix/' },
+        { name: 'DS Playground', type: 'interactive DS tutorials', status: 'live', link: 'https://khoimai05.github.io/Data-Science-Playground/' },
     ],
 };
 
