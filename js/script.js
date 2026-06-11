@@ -453,7 +453,7 @@ const SQL_DB = {
             role: 'Data Scientist Intern',
             period: 'Jun 2026 – Present',
             location: 'Carmel, IN',
-            highlight: 'Automated Propensity To Pay retraining on AWS SageMaker — cutting retraining from 13 days to better across 120M+ billing encounters; 5 production automation components across Dev/Staging/Prod'
+            highlight: 'Automated Propensity To Pay retraining on AWS SageMaker — accelerating 13-day ML retraining cycles across 120M+ billing encounters; 5 production automation components across Dev/Staging/Prod'
         },
         {
             company: 'Discovery Park',
