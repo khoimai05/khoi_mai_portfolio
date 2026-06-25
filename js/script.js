@@ -161,6 +161,95 @@ const observer = new IntersectionObserver(function (entries) {
 
 projectsContainers.forEach(container => observer.observe(container));
 
+// ─── Notebook polish: syntax highlight + execution + count-up ─────────────────
+(function notebookPolish() {
+    const KNOWN_VARS = ['experience_df', 'projects_df', 'khoi'];
+
+    function escHtml(s) {
+        return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    function highlight(code) {
+        const re = /(\s+)|("(?:[^"\\]|\\.)*"|'(?:[^'\\]|\\.)*')|(\d+(?:\.\d+)?)|([A-Za-z_][A-Za-z0-9_]*)|(==|!=|>=|<=)|([.\[\]()=,:])/g;
+        let out = '';
+        let prev = '';
+        let m;
+        while ((m = re.exec(code)) !== null) {
+            if (m[1]) { out += m[1]; continue; }
+            if (m[2]) { out += `<span class="tok-str">${escHtml(m[2])}</span>`; prev = 'str'; continue; }
+            if (m[3]) { out += `<span class="tok-num">${m[3]}</span>`; prev = 'num'; continue; }
+            if (m[4]) {
+                let cls = 'tok-name';
+                if (prev === '.') cls = 'tok-attr';
+                else if (KNOWN_VARS.includes(m[4])) cls = 'tok-var';
+                out += `<span class="${cls}">${m[4]}</span>`;
+                prev = 'name';
+                continue;
+            }
+            if (m[5]) { out += `<span class="tok-op">${escHtml(m[5])}</span>`; prev = 'op'; continue; }
+            if (m[6]) { out += `<span class="tok-punct">${escHtml(m[6])}</span>`; prev = m[6]; continue; }
+        }
+        return out;
+    }
+
+    document.querySelectorAll('.nb-cell pre code').forEach((code) => {
+        code.removeAttribute('style');
+        code.innerHTML = highlight(code.textContent);
+    });
+
+    function countUp(el) {
+        if (el.dataset.counted) return;
+        const match = el.textContent.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
+        if (!match) return;
+        el.dataset.counted = '1';
+        const target = parseFloat(match[1]);
+        const suffix = match[2];
+        const isFloat = match[1].includes('.');
+        const duration = 1100;
+        const startTime = performance.now();
+        function frame(now) {
+            const p = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            const val = target * eased;
+            el.textContent = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
+            if (p < 1) requestAnimationFrame(frame);
+            else el.textContent = match[1] + suffix;
+        }
+        requestAnimationFrame(frame);
+    }
+
+    const wrappers = document.querySelectorAll('.nb-cell-wrapper');
+    wrappers.forEach((w) => {
+        const inPrompt = w.querySelector('.nb-cell:not(.nb-output) .nb-prompt');
+        if (!inPrompt) return;
+        const num = (inPrompt.textContent.match(/\d+/) || ['1'])[0];
+        w.dataset.cellNum = num;
+        inPrompt.textContent = 'In [ ]:';
+    });
+
+    const ranObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const w = entry.target;
+            ranObserver.unobserve(w);
+            const inPrompt = w.querySelector('.nb-cell:not(.nb-output) .nb-prompt');
+            const num = w.dataset.cellNum || '1';
+            const idx = Array.prototype.indexOf.call(w.parentElement.children, w);
+            const delay = idx * 130;
+            setTimeout(() => {
+                if (inPrompt) inPrompt.textContent = 'In [*]:';
+                setTimeout(() => {
+                    if (inPrompt) inPrompt.textContent = `In [${num}]:`;
+                    w.classList.add('nb-ran');
+                    w.querySelectorAll('.project-card-text strong').forEach(countUp);
+                }, 300);
+            }, delay);
+        });
+    }, { threshold: 0.2 });
+
+    wrappers.forEach((w) => ranObserver.observe(w));
+})();
+
 // Data Grid Background Effect
 const canvas = document.createElement('canvas');
 canvas.id = 'constellation-canvas';

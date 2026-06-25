@@ -265,6 +265,14 @@ body.light-mode .nb-cell.nb-output .nb-output-content {
   color: rgba(0, 0, 0, 0.75);
 }
 
+body.light-mode .nb-cell pre code .tok-var { color: #8a6d1f; }
+body.light-mode .nb-cell pre code .tok-attr { color: #2f6f9f; }
+body.light-mode .nb-cell pre code .tok-str { color: #4f7a3f; }
+body.light-mode .nb-cell pre code .tok-num { color: #b5701d; }
+body.light-mode .nb-cell pre code .tok-name { color: #333333; }
+body.light-mode .nb-cell pre code .tok-op { color: rgba(0, 0, 0, 0.7); }
+body.light-mode .nb-cell pre code .tok-punct { color: rgba(0, 0, 0, 0.45); }
+
 /* Progress bar */
 body.light-mode #progress-bar {
   background: linear-gradient(90deg, #9a7c40, #cfb991);
