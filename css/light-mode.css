@@ -250,6 +250,15 @@ body.light-mode .long-form-content code {
   color: #7a5c20;
 }
 
+body.light-mode .nb-section-comment {
+  color: rgba(122, 92, 32, 0.55);
+}
+
+body.light-mode .nb-cell-wrapper {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: rgba(255, 252, 246, 0.5);
+}
+
 body.light-mode .nb-cell.nb-output .nb-output-content {
   background: rgba(0, 0, 0, 0.03);
   border-left: 3px solid rgba(0, 0, 0, 0.1);
