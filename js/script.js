@@ -161,7 +161,7 @@ const observer = new IntersectionObserver(function (entries) {
 
 projectsContainers.forEach(container => observer.observe(container));
 
-// ─── Notebook polish: syntax highlight + execution + count-up ─────────────────
+// ─── Notebook polish: syntax highlight + execution ────────────────────────────
 (function notebookPolish() {
     const KNOWN_VARS = ['experience_df', 'projects_df', 'khoi'];
 
@@ -197,27 +197,6 @@ projectsContainers.forEach(container => observer.observe(container));
         code.innerHTML = highlight(code.textContent);
     });
 
-    function countUp(el) {
-        if (el.dataset.counted) return;
-        const match = el.textContent.trim().match(/^(\d+(?:\.\d+)?)(.*)$/);
-        if (!match) return;
-        el.dataset.counted = '1';
-        const target = parseFloat(match[1]);
-        const suffix = match[2];
-        const isFloat = match[1].includes('.');
-        const duration = 1100;
-        const startTime = performance.now();
-        function frame(now) {
-            const p = Math.min((now - startTime) / duration, 1);
-            const eased = 1 - Math.pow(1 - p, 3);
-            const val = target * eased;
-            el.textContent = (isFloat ? val.toFixed(1) : Math.round(val)) + suffix;
-            if (p < 1) requestAnimationFrame(frame);
-            else el.textContent = match[1] + suffix;
-        }
-        requestAnimationFrame(frame);
-    }
-
     const wrappers = document.querySelectorAll('.nb-cell-wrapper');
     wrappers.forEach((w) => {
         const inPrompt = w.querySelector('.nb-cell:not(.nb-output) .nb-prompt');
@@ -241,7 +220,6 @@ projectsContainers.forEach(container => observer.observe(container));
                 setTimeout(() => {
                     if (inPrompt) inPrompt.textContent = `In [${num}]:`;
                     w.classList.add('nb-ran');
-                    w.querySelectorAll('.project-card-text strong').forEach(countUp);
                 }, 300);
             }, delay);
         });
