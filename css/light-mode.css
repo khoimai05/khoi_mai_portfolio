@@ -66,13 +66,13 @@ body.light-mode .nav-links a:hover {
   border-bottom-color: #9a7c40;
 }
 
-/* Hero title gradient */
-body.light-mode .text-gradient {
-  background: linear-gradient(90deg, #1a1a1a, #9a7c40, #1a1a1a);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+/* Hero title */
+body.light-mode .hero-title {
+  color: #1a1a1a;
+}
+
+body.light-mode .hero-title-intro {
+  color: #8a6d2f;
 }
 
 /* Project Cards */

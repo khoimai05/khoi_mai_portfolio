@@ -36,6 +36,29 @@ body {
   letter-spacing: -1px;
 }
 
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 18px;
+  color: #f5f2eb;
+}
+
+.hero-title-intro {
+  color: #CFB991;
+  font-size: clamp(14px, 1.4vw, 18px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.hero-title-name {
+  font-size: 1em;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
 
 .button-text {
   font-family: 'Fira Code', monospace;
