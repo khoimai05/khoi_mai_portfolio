@@ -516,18 +516,18 @@ if (navbar) {
 const SQL_DB = {
     experience: [
         {
+            company: 'Uber',
+            role: 'Incoming Data Scientist Intern',
+            period: 'Aug 2026 – Present',
+            location: 'Chicago, IL',
+            highlight: 'Freight Pricing Applications: pricing and optimization models for the Brokerage Marketplace; forecasting and experimentation across SQL/Python pipelines for real-time freight pricing'
+        },
+        {
             company: 'Zotec Financial',
             role: 'Data Scientist Intern',
             period: 'Jun 2026 – Present',
             location: 'Carmel, IN',
             highlight: 'Automated Propensity To Pay retraining on AWS SageMaker — accelerating 13-day ML retraining cycles across 120M+ billing encounters; 5 production automation components across Dev/Staging/Prod'
-        },
-        {
-            company: 'Discovery Park',
-            role: 'EV Adoption Research',
-            period: 'Dec 2025 – Now',
-            location: 'West Lafayette, IN',
-            highlight: 'Geospatial ETL from 200K+ EV permits & 1M+ POI records; two-way FE regression across 20K+ Census Block Groups — DUIRI $1,000 grant recipient'
         },
         {
             company: 'Antsomi',
@@ -542,13 +542,6 @@ const SQL_DB = {
             period: 'Jun 2025 – Aug 2025',
             location: 'Palo Alto, CA (remote)',
             highlight: 'Built GPT-4o caption pipeline (50–500+ words); caption-augmented inputs caused 4% accuracy degradation benchmarking Qwen-2.5-7B and GPT-4o on OKVQA'
-        },
-        {
-            company: 'VRAI Lab',
-            role: 'NLP Research Assistant',
-            period: 'Sep 2024 – Now',
-            location: 'West Lafayette, IN',
-            highlight: 'Automated pipelines ingesting 10K+ papers (20GB+/run) at 450+ papers/hour with 86% extraction success; LDA topic modeling for Purdue faculty'
         },
         {
             company: 'OCB',

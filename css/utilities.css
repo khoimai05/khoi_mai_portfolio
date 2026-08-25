@@ -49,10 +49,32 @@ a.icon-link:hover {
 
 .nav-title-link {
   text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  height: 28px;
+  padding-bottom: 3px;
+}
+
+.nav-title-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #CFB991;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav-title-link:hover {
-  text-decoration: underline;
+  text-decoration: none;
+}
+
+.nav-title-link:hover::after {
+  transform: scaleX(1);
 }
 
 /* Small devices (portrait tablets and large phones, 800px and below) */
@@ -408,6 +430,10 @@ a.icon-link {
 
 .nb-cell-wrapper:nth-child(6) .project-card {
   transition-delay: 0.6s;
+}
+
+.nb-cell-wrapper:nth-child(7) .project-card {
+  transition-delay: 0.7s;
 }
 
 /* Button Container */

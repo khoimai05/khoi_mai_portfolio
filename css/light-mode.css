@@ -71,7 +71,8 @@ body.light-mode .hero-title {
   color: #1a1a1a;
 }
 
-body.light-mode .hero-title-intro {
+body.light-mode .hero-title-intro,
+body.light-mode .hero-title-bang {
   color: #8a6d2f;
 }
 
