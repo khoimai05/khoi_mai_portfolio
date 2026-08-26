@@ -229,9 +229,39 @@ body {
 }
 
 .project-card-text-container {
+  flex: 1;
+  min-width: 0;
   flex-direction: column;
   display: flex;
-  gap: 16px
+  gap: 8px;
+}
+
+.experience-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  width: 100%;
+}
+
+.experience-heading .project-title {
+  min-width: 0;
+}
+
+.experience-dates {
+  flex-shrink: 0;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.45);
+  white-space: nowrap;
+}
+
+.experience-meta {
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(207, 185, 145, 0.72);
 }
 
 .project-image {
@@ -1137,5 +1167,10 @@ body {
   .project-image {
     width: 100% !important;
     height: 180px !important;
+  }
+  .experience-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
   }
 }

@@ -83,9 +83,12 @@ body.light-mode .project-card {
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.08);
 }
 
-body.light-mode .project-card.visible:hover {
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-  border-color: rgba(154, 124, 64, 0.3);
+body.light-mode .experience-dates {
+  color: rgba(0, 0, 0, 0.45);
+}
+
+body.light-mode .experience-meta {
+  color: rgba(122, 92, 32, 0.75);
 }
 
 /* Buttons */

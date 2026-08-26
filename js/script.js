@@ -525,7 +525,7 @@ const SQL_DB = {
         {
             company: 'Zotec Financial',
             role: 'Data Scientist Intern',
-            period: 'Jun 2026 – Present',
+            period: 'Jun 2026 – Aug 2026',
             location: 'Carmel, IN',
             highlight: 'Automated Propensity To Pay retraining on AWS SageMaker — accelerating 13-day ML retraining cycles across 120M+ billing encounters; 5 production automation components across Dev/Staging/Prod'
         },
@@ -540,8 +540,8 @@ const SQL_DB = {
             company: 'Algoverse',
             role: 'LLM Research Fellow',
             period: 'Jun 2025 – Aug 2025',
-            location: 'Palo Alto, CA (remote)',
-            highlight: 'Built GPT-4o caption pipeline (50–500+ words); caption-augmented inputs caused 4% accuracy degradation benchmarking Qwen-2.5-7B and GPT-4o on OKVQA'
+            location: 'Palo Alto, CA (Remote)',
+            highlight: 'Built GPT-4o caption pipeline (50–500+ words); caption-augmented inputs caused 8% accuracy degradation benchmarking Qwen-2.5-7B and GPT-4o on OKVQA'
         },
         {
             company: 'OCB',
